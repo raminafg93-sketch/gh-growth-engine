@@ -19,11 +19,11 @@
 
 ## Phase 3 – Website und SEO
 
-- neue Architektur
+- neue Architektur — Informationsarchitektur nach Suchintention vorliegend (2026-07-21), siehe `13_REPORTS/06_information-architecture.md`; Umsetzung noch offen
 - technische Plattform
 - Migration
-- Problemseiten
-- Leistungsseiten
+- Problemseiten — priorisierte Ratgeber-Liste vorliegend, siehe `13_REPORTS/06_information-architecture.md` Abschnitt D
+- Leistungsseiten — priorisierte Landingpage-Liste vorliegend, siehe `13_REPORTS/06_information-architecture.md` Abschnitt C
 - lokale SEO
 - AI Search
 
