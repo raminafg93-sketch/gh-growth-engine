@@ -31,7 +31,7 @@ Jede URL erhält:
 - MERGE
 - REDIRECT
 - NEW
-- REVIEW
+- REVIEW: Eine manuelle Prüfung ist erforderlich, weil Daten fehlen oder noch keine eindeutige Entscheidung möglich ist.
 
 ## Regeln
 
