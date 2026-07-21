@@ -86,6 +86,7 @@ Reihenfolge:
 - **Büro-/Terminstandort:** Holzdamm, Hamburg
 - **Telefon:** +49 173 408 64 20
 - **E-Mail:** info@kfz-gutachtenhelden.de
+- **Website:** https://www.kfz-gutachtenhelden.de
 - **persönliche Erreichbarkeit:** täglich 08:00–22:00 Uhr
 - **Service:** 24/7-Service darf kommuniziert werden
 
@@ -134,6 +135,15 @@ Wichtige Abgrenzung:
 Primär:
 
 Unfallgeschädigte Privatkunden in Hamburg, die schnelle, verständliche und persönliche Hilfe suchen.
+
+Sekundär:
+
+- Werkstätten
+- Rechtsanwälte
+- Autohäuser
+- ausgewählte Kooperationspartner
+
+Coaching- und Academy-Teilnehmer bleiben eine spätere Zielgruppe.
 
 Typische Probleme:
 
