@@ -1,0 +1,74 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/data/site";
+---
+
+<BaseLayout
+  title={`Interne Vorschau · ${site.brandName}`}
+  description="Technisches Grundgerüst der künftigen Astro-Website. Keine Live-Seite."
+  noindex={true}
+>
+  <p class="preview-banner">
+    Interne Website-V2-Vorschau – nicht für den Livebetrieb
+  </p>
+
+  <section>
+    <h1>{site.brandName}</h1>
+    <p>
+      Dieses Grundgerüst zeigt, dass Astro-Build, globales Layout, lokale
+      Styles, die zentrale Unternehmenskonfiguration, die SEO-Komponente, Header
+      und Footer technisch funktionieren. Es ist ausdrücklich
+      <strong>nicht</strong> die neue Homepage — die aktuelle Framer-Website unter
+      <code>{site.websiteUrl}</code> bleibt unverändert live.
+    </p>
+  </section>
+
+  <section>
+    <h2>Qualifikation &amp; Nachweise</h2>
+    <ul class="grid">
+      {site.qualifications.map((item) => <li>{item}</li>)}
+      {site.proofClaims.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Erreichbarkeit</h2>
+    <p>{site.address.official} &middot; {site.hours}</p>
+  </section>
+</BaseLayout>
+
+<style>
+  .preview-banner {
+    background: var(--color-navy);
+    color: var(--color-white);
+    text-align: center;
+    padding: var(--space-2) var(--space-4);
+    font-weight: 700;
+    border-radius: 0.5rem;
+    margin-block: var(--space-4);
+  }
+
+  section {
+    margin-block: var(--space-8);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    padding: 0;
+    list-style: none;
+  }
+
+  .grid li {
+    background: var(--color-grey-light);
+    padding: var(--space-4);
+    border-radius: 0.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

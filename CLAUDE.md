@@ -94,3 +94,69 @@ festgelegt:
 
 Details, Voraussetzungen und die Unterbrechungsregel: siehe
 `12_AI_SYSTEM/03_github-autonomy.md`.
+
+## Monorepo-Regeln
+
+Seit dem Monorepo-Fundament (`docs/architecture/decisions/0001-monorepo-statt-zweitem-repository.md`) enthält dieses Repository zusätzlich zur Wissensbasis den Website-Code unter `apps/website/`. Diese Regeln gelten zusätzlich zu allen bisherigen Regeln dieser Datei.
+
+### A. Aufgabenbereich erkennen
+
+Vor jeder Änderung bestimmt Claude zuerst den Aufgabenbereich:
+
+- **KNOWLEDGE ONLY** — betrifft nur die nummerierten Wissensordner, `00_GH_*`, `11_OPERATIONS`, `12_AI_SYSTEM`, `13_REPORTS`
+- **WEBSITE ONLY** — betrifft nur `apps/website/**`
+- **CROSS-DOMAIN** — betrifft Website-Code und Wissensbasis gemeinsam
+- **REPORT ONLY** — erzeugt nur Reports/Audits, keine produktiven Änderungen
+- **INFRASTRUCTURE** — betrifft Root-Konfiguration (`package.json`, `pnpm-workspace.yaml`, `.gitignore`, `.npmrc`, `.nvmrc`) oder `.github/workflows/**`
+
+### B. Änderungsgrenzen
+
+**KNOWLEDGE ONLY:**
+- verändert keine Dateien unter `apps/website/**`
+- löst keinen Website-Build aus, sofern technisch vermeidbar (Pfadfilter in der CI)
+
+**WEBSITE ONLY:**
+- verändert primär `apps/website/**`
+- ändert Wissensdokumente nur bei einer echten, im PR benannten Inkonsistenz
+- kennzeichnet live-wirksame Änderungen klar im Pull Request (sobald ein Deployment existiert)
+
+**CROSS-DOMAIN:**
+- darf Website-Code und Wissensbasis gemeinsam aktualisieren
+- muss die Notwendigkeit dafür im Pull Request explizit erklären
+
+**REPORT ONLY:**
+- erzeugt keine produktiven Änderungen an `apps/website/**`
+
+**INFRASTRUCTURE:**
+- darf Root-Konfigurationen und GitHub-Workflows ändern
+- wird besonders sorgfältig geprüft (Build/CI vor dem Commit lokal testen)
+
+### C. Pull-Request-Struktur
+
+Jeder Pull Request, der Website-Code oder Infrastruktur betrifft, unterscheidet:
+
+- **LIVE-WIRKSAM** — Dateien/Änderungen, die eine spätere, deployte Website beeinflussen (`apps/website/src/**`, `astro.config.mjs`, `apps/website/public/**`)
+- **NICHT LIVE-WIRKSAM** — Dokumentation, Reports, Strategie, interne Prozesse, `docs/**`
+- **RISIKEN** — SEO, Deployment, URL, Tracking, Formulare, Datenschutz (auch wenn aktuell keine betroffen sind: explizit "keine" vermerken)
+- **TESTS** — welche Prüfungen ausgeführt wurden (`pnpm website:check`, `pnpm website:build`, CI-Status) und deren Ergebnis
+
+### D. Schutzregeln
+
+- keine direkte Domain-Änderung
+- kein Löschen bestehender Framer-Inhalte
+- keine erfundenen Unternehmensangaben (unbestätigte Werte in `site.ts` bleiben `status: "missing"`, nie ein Fake-Wert)
+- keine Secrets im Repository
+- keine unbestätigte Entfernung bestehender URLs
+- keine automatische Veröffentlichung auf der Hauptdomain
+- keine großflächige Content-Neuschreibung während einer technischen Migration
+
+### E. Arbeitsprinzip
+
+So wenig Dateien wie nötig. So viele Dateien wie fachlich erforderlich. Keine ungefragten Nebenprojekte. Keine unnötige Abstraktion. Keine Infrastruktur ohne geschäftlichen Nutzen.
+
+### Verwandte Dateien
+
+- `docs/architecture/monorepo-architecture.md` — Architekturbegründung
+- `docs/workflows/claude-code-monorepo-workflow.md` — konkreter Ablauf für Website- und Wissensaufgaben
+- `docs/workflows/owner-workflow.md` — verständliche Anleitung für Ramin
+- `12_AI_SYSTEM/03_github-autonomy.md` — Autonomiestufen (unverändert führend bei Widerspruch)
