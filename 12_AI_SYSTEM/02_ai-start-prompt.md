@@ -5,8 +5,9 @@ Lies zuerst:
 
 1. 00_GH_MASTER_CONTEXT.md
 2. 00_GH_DOCUMENT_MAP.md
-3. CLAUDE.md
-4. die für meine Aufgabe relevanten Dateien
+3. 00_GH_PRINCIPLES.md
+4. CLAUDE.md
+5. die für meine Aufgabe relevanten Dateien
 
 Verändere noch nichts.
 

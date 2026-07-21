@@ -15,8 +15,9 @@ Jede KI soll sofort verstehen:
 
 1. `00_GH_MASTER_CONTEXT.md`
 2. `00_GH_DOCUMENT_MAP.md`
-3. `CLAUDE.md`
-4. fachlich relevante Dateien
+3. `00_GH_PRINCIPLES.md`
+4. `CLAUDE.md`
+5. fachlich relevante Dateien
 
 ## Pflichtantwort
 

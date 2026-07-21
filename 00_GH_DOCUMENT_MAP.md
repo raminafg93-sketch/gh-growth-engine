@@ -8,6 +8,7 @@ Jede Information hat genau eine Primärdatei. Andere Dateien dürfen darauf verw
 
 | Änderung | Primärdatei | zusätzlich prüfen |
 |---|---|---|
+| Dauerhafte Entscheidungsprinzipien | `00_GH_PRINCIPLES.md` | Master Context, CLAUDE.md, Decision Log |
 | Firmenname, Adresse, Telefon, E-Mail | `02_COMPANY/01_company-facts.md` | Master Context, Google Business, Website-Footer, Impressum |
 | Öffnungszeiten / Erreichbarkeit | `02_COMPANY/01_company-facts.md` | Master Context, Google Business, Website, Ads |
 | Qualifikation / Zertifizierung | `02_COMPANY/02_trust-and-proof.md` | Claims, Website-Trust, GBP, Ads |
