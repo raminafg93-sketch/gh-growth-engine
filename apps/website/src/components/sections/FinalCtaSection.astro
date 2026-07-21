@@ -1,0 +1,31 @@
+---
+import Section from "@/components/layout/Section.astro";
+import PrimaryCtaGroup from "@/components/conversion/PrimaryCtaGroup.astro";
+import { homepage } from "@/data/homepage";
+---
+
+<Section background="inverse" class="final-cta">
+  <h2>{homepage.finalCta.headline}</h2>
+  <p class="lede">{homepage.finalCta.body}</p>
+  <PrimaryCtaGroup size="lg" class="final-cta__cta" />
+</Section>
+
+<style>
+  /* .final-cta lebt auf dem Root von <Section> (anderer Scope) — siehe
+     ausführliche Begründung in HeroSection.astro. */
+  :global(.final-cta .container) {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  :global(.final-cta) .lede {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  :global(.final-cta .final-cta__cta) {
+    justify-content: center;
+  }
+</style>

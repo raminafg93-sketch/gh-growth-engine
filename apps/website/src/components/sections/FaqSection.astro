@@ -1,0 +1,49 @@
+---
+/**
+ * FAQ als natives <details>/<summary> — vollständig zugänglich und
+ * bedienbar ohne jegliches JavaScript.
+ */
+import Section from "@/components/layout/Section.astro";
+import { homepage } from "@/data/homepage";
+---
+
+<Section id="faq" background="page" narrow>
+  <h2>Häufige Fragen</h2>
+  <p class="lede">{homepage.faq.intro}</p>
+
+  <div class="faq-list">
+    {
+      homepage.faq.items.map((item) => (
+        <details class="faq-item">
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))
+    }
+  </div>
+</Section>
+
+<style>
+  .faq-list {
+    margin-top: var(--space-6);
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .faq-item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-brand);
+  }
+
+  .faq-item p {
+    margin: var(--space-3) 0 0;
+    color: var(--color-text-muted);
+  }
+</style>

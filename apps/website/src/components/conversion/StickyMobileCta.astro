@@ -1,0 +1,43 @@
+---
+/**
+ * Mobile Sticky-CTA: hält den primären Conversion-Pfad auch beim Scrollen
+ * sichtbar (Auftragsvorgabe: "mobile Sticky-CTA, falls sachlich passend" —
+ * sachlich passend, da die primäre Zielgruppe akut nach einem Unfall und
+ * überwiegend mobil unterwegs ist). Ab 768px ausgeblendet (Desktop hat den
+ * Header-CTA permanent sichtbar).
+ */
+import PrimaryCtaGroup from "@/components/conversion/PrimaryCtaGroup.astro";
+---
+
+<div class="sticky-cta" role="region" aria-label="Schnellkontakt">
+  <PrimaryCtaGroup size="md" class="sticky-cta__group" />
+</div>
+
+<style>
+  .sticky-cta {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: var(--z-sticky-cta);
+    background: var(--color-white);
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-3) var(--space-4);
+    padding-bottom: max(var(--space-3), env(safe-area-inset-bottom));
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sticky-cta :global(.cluster) {
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .sticky-cta :global(.btn) {
+    flex: 1;
+  }
+
+  @media (min-width: 768px) {
+    .sticky-cta {
+      display: none;
+    }
+  }
+</style>

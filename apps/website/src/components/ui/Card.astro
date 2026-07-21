@@ -1,0 +1,30 @@
+---
+/**
+ * Generische Oberflächenkarte. Basis für ReviewCard/ContactCard und
+ * einfache Inhaltsblöcke (z. B. Leistungs-/Prozess-Karten).
+ */
+interface Props {
+  elevated?: boolean;
+  class?: string;
+}
+
+const { elevated = false, class: className = "" } = Astro.props;
+---
+
+<div class:list={["card", elevated && "card--elevated", className]}>
+  <slot />
+</div>
+
+<style>
+  .card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+  }
+
+  .card--elevated {
+    border-color: transparent;
+    box-shadow: var(--shadow-md);
+  }
+</style>

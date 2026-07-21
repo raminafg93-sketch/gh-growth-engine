@@ -1,0 +1,27 @@
+---
+/**
+ * Setzt die CTA-Hierarchie aus 05_WEBSITE_SEO/03_conversion-system.md
+ * technisch um: WhatsApp vor Anruf. Zeigt WhatsApp nur, wenn bestätigt —
+ * sonst wird Anruf automatisch zum primären CTA, statt eine Lücke oder
+ * einen toten Button zu zeigen.
+ */
+import WhatsAppButton from "@/components/conversion/WhatsAppButton.astro";
+import CallButton from "@/components/conversion/CallButton.astro";
+import { site, isConfirmed } from "@/data/site";
+
+interface Props {
+  size?: "md" | "lg";
+  class?: string;
+}
+
+const { size = "lg", class: className = "" } = Astro.props;
+const whatsappConfirmed = isConfirmed(site.whatsapp);
+---
+
+<div class:list={["cluster", className]}>
+  <WhatsAppButton size={size} />
+  <CallButton
+    variant={whatsappConfirmed ? "secondary" : "primary"}
+    size={size}
+  />
+</div>

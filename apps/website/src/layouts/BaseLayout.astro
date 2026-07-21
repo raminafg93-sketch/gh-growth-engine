@@ -1,7 +1,9 @@
 ---
-import Seo from "@/components/seo/Seo.astro";
-import Header from "@/components/layout/Header.astro";
-import Footer from "@/components/layout/Footer.astro";
+import SeoHead from "@/components/seo/SeoHead.astro";
+import JsonLd from "@/components/seo/JsonLd.astro";
+import SiteHeader from "@/components/layout/SiteHeader.astro";
+import SiteFooter from "@/components/layout/SiteFooter.astro";
+import StickyMobileCta from "@/components/conversion/StickyMobileCta.astro";
 import "@/styles/global.css";
 
 interface Props {
@@ -18,13 +20,30 @@ const { title, description, noindex = false } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <Seo title={title} description={description} noindex={noindex} />
+    <SeoHead title={title} description={description} noindex={noindex} />
+    <JsonLd />
   </head>
   <body>
-    <Header />
-    <main class="container">
+    <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+    <SiteHeader />
+    <main id="main-content">
       <slot />
     </main>
-    <Footer />
+    <SiteFooter />
+    <StickyMobileCta />
   </body>
 </html>
+
+<style>
+  main {
+    display: block;
+    /* Platz für die mobile Sticky-CTA, damit sie den letzten Inhalt nicht verdeckt */
+    padding-bottom: calc(var(--button-height-md) + var(--space-6));
+  }
+
+  @media (min-width: 768px) {
+    main {
+      padding-bottom: 0;
+    }
+  }
+</style>

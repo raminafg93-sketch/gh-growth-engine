@@ -1,0 +1,64 @@
+---
+/**
+ * Leistungsüberblick. Liste aus 03_OFFER/01_services.md. Verlinkt bewusst
+ * auf die bestehende Live-Seite `/leistungen` (Framer) statt auf eine noch
+ * nicht existierende Astro-Unterseite — kein toter interner Link.
+ */
+import Section from "@/components/layout/Section.astro";
+import Card from "@/components/ui/Card.astro";
+import { homepage } from "@/data/homepage";
+import { site } from "@/data/site";
+---
+
+<Section id="leistungen" background="page">
+  <h2>Unsere Leistungen</h2>
+  <p class="lede">{homepage.services.intro}</p>
+
+  <div class="service-grid">
+    {
+      homepage.services.items.map((item) => (
+        <Card>
+          <h3>{item.name}</h3>
+          <p>{item.description}</p>
+        </Card>
+      ))
+    }
+  </div>
+
+  <p>
+    <a href={`${site.websiteUrl}/leistungen`}
+      >Alle Leistungen im Detail ansehen →</a
+    >
+  </p>
+</Section>
+
+<style>
+  .service-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-block: var(--space-8);
+  }
+
+  .service-grid h3 {
+    font-size: var(--text-lg);
+    margin: 0 0 var(--space-2);
+  }
+
+  .service-grid p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 640px) {
+    .service-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .service-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

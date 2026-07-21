@@ -1,0 +1,35 @@
+---
+/**
+ * Aggregierte Bewertungsanzeige (z. B. "4,9/5 aus 120 Bewertungen").
+ * Rendert bewusst NICHTS, solange keine echte, bestätigte Zahl vorliegt —
+ * siehe Warnung in docs/migration/current-homepage-inventory.md
+ * (Sektion "Bewertungen") zu einer nicht verifizierbaren Suchtreffer-Zahl,
+ * die hier ausdrücklich nicht verwendet wird.
+ */
+interface Props {
+  rating?: number;
+  reviewCount?: number;
+  source?: string;
+  class?: string;
+}
+
+const { rating, reviewCount, source, class: className = "" } = Astro.props;
+const hasData = typeof rating === "number" && typeof reviewCount === "number";
+---
+
+{
+  hasData && (
+    <p class:list={["rating-summary", className]}>
+      <strong>{rating?.toFixed(1)}/5</strong> aus {reviewCount} Bewertungen
+      {source && <> auf {source}</>}
+    </p>
+  )
+}
+
+<style>
+  .rating-summary {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    margin: 0;
+  }
+</style>

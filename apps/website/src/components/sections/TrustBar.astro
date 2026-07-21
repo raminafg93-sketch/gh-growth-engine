@@ -1,0 +1,34 @@
+---
+/**
+ * Kennzahlenleiste direkt unter dem Hero — bestätigte Claims aus
+ * 02_COMPANY/02_trust-and-proof.md / 11_OPERATIONS/02_proof-register.md.
+ */
+import Section from "@/components/layout/Section.astro";
+import StatItem from "@/components/trust/StatItem.astro";
+import { homepage } from "@/data/homepage";
+---
+
+<Section background="surface" ariaLabel="Kennzahlen">
+  <div class="trust-bar">
+    {
+      homepage.trustBar.stats.map((stat) => (
+        <StatItem value={stat.value} label={stat.label} />
+      ))
+    }
+  </div>
+</Section>
+
+<style>
+  .trust-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .trust-bar {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

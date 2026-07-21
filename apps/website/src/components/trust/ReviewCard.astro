@@ -1,0 +1,59 @@
+---
+/**
+ * Einzelne Kundenbewertung. Erwartet echte Daten (z. B. ProvenExpert-Export).
+ * Aktuell ohne Aufrufer im Homepage-Neuaufbau, da keine echten Bewertungen
+ * in der Wissensbasis bestätigt sind (siehe
+ * docs/migration/current-homepage-inventory.md, Sektion "Bewertungen").
+ */
+interface Props {
+  author: string;
+  quote: string;
+  /** 1–5, optional — nur ausgeben, wenn aus echter Quelle bekannt */
+  rating?: number;
+  class?: string;
+}
+
+const { author, quote, rating, class: className = "" } = Astro.props;
+---
+
+<figure class:list={["review-card", className]}>
+  {
+    rating && (
+      <div
+        class="review-card__rating"
+        aria-label={`Bewertung: ${rating} von 5 Sternen`}
+      >
+        {"★".repeat(rating)}
+        {"☆".repeat(5 - rating)}
+      </div>
+    )
+  }
+  <blockquote class="review-card__quote">{quote}</blockquote>
+  <figcaption class="review-card__author">{author}</figcaption>
+</figure>
+
+<style>
+  .review-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    margin: 0;
+  }
+
+  .review-card__rating {
+    color: var(--color-accent);
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-2);
+  }
+
+  .review-card__quote {
+    margin: 0 0 var(--space-3);
+    font-style: normal;
+  }
+
+  .review-card__author {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+</style>

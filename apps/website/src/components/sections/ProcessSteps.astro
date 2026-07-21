@@ -1,0 +1,74 @@
+---
+/**
+ * Ablauf. Basis: 03_OFFER/02_customer-process.md (7 Schritte, hier auf 5
+ * sichtbare Schritte redaktionell verdichtet — keine Faktenänderung).
+ */
+import Section from "@/components/layout/Section.astro";
+import { homepage } from "@/data/homepage";
+---
+
+<Section id="ablauf" background="surface">
+  <h2>So läuft es ab</h2>
+  <p class="lede">{homepage.process.intro}</p>
+
+  <ol class="process-list">
+    {
+      homepage.process.steps.map((step, index) => (
+        <li class="process-list__item">
+          <span class="process-list__index" aria-hidden="true">
+            {index + 1}
+          </span>
+          <div>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</Section>
+
+<style>
+  .process-list {
+    list-style: none;
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .process-list__item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .process-list__index {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-full);
+    background: var(--color-accent);
+    color: var(--color-text-inverse);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .process-list__item h3 {
+    font-size: var(--text-lg);
+    margin: 0 0 var(--space-1);
+  }
+
+  .process-list__item p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .process-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

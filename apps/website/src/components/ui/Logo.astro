@@ -1,0 +1,34 @@
+---
+/**
+ * Markenlogo. `variant="header"` = horizontale Wortmarke (Header/Footer),
+ * `variant="mark"` = rundes Bildzeichen (z. B. spätere Favicon-/Social-Fläche).
+ * Assets siehe docs/architecture/asset-strategy.md.
+ */
+import ResponsiveImage from "@/components/ui/ResponsiveImage.astro";
+import { site } from "@/data/site";
+import headerLogo from "@/assets/logo/gh-logo-header.png";
+import markLogo from "@/assets/logo/gh-logo-mark.png";
+
+interface Props {
+  variant?: "header" | "mark";
+  class?: string;
+}
+
+const { variant = "header", class: className = "" } = Astro.props;
+
+const logos = {
+  header: { src: headerLogo, width: 169, height: 32 },
+  mark: { src: markLogo, width: 40, height: 40 },
+};
+
+const logo = logos[variant];
+---
+
+<ResponsiveImage
+  src={logo.src}
+  alt={site.brandName}
+  width={logo.width}
+  height={logo.height}
+  priority={true}
+  class={className}
+/>

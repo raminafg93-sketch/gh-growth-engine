@@ -1,0 +1,76 @@
+/*
+ * Utilities v1 — bewusst klein gehalten. Nur Klassen mit echtem,
+ * wiederkehrendem Einsatzzweck über mehrere Komponenten hinweg.
+ */
+
+.container {
+  width: 100%;
+  max-width: var(--container-lg);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-8);
+  }
+}
+
+.container--narrow {
+  max-width: var(--container-md);
+}
+
+/* Vertikaler Rhythmus zwischen direkten Kindelementen, ohne Margin-Collapsing-Fallen */
+.stack > * + * {
+  margin-top: var(--space-space, var(--space-6));
+}
+
+.stack--sm > * + * {
+  --space-space: var(--space-3);
+}
+
+.stack--lg > * + * {
+  --space-space: var(--space-10);
+}
+
+/* Horizontale, umbrechende Gruppe (z. B. CTA-Paare, Badge-Reihen) */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Nur für Screenreader sichtbar, z. B. Skip-Link-Ziel-Label */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip-Link: sichtbar bei Tastaturfokus, sonst visuell versteckt */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  z-index: var(--z-overlay);
+  background: var(--color-navy);
+  color: var(--color-white);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+.text-center {
+  text-align: center;
+}

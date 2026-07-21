@@ -1,0 +1,53 @@
+---
+/**
+ * Bewertungen. Rendert bewusst NICHTS, solange keine echten Bewertungsdaten
+ * vorliegen (siehe docs/migration/current-homepage-inventory.md, Sektion
+ * "Bewertungen" — eine per Suche gefundene Zahl war nicht zuverlässig
+ * zuordenbar und wird hier nicht verwendet).
+ */
+import Section from "@/components/layout/Section.astro";
+import ReviewCard from "@/components/trust/ReviewCard.astro";
+import RatingSummary from "@/components/trust/RatingSummary.astro";
+import { homepage } from "@/data/homepage";
+
+const { items, ratingSummary, intro } = homepage.reviews;
+---
+
+{
+  items.length > 0 && (
+    <Section id="bewertungen" background="page">
+      <h2>Bewertungen</h2>
+      <p class="lede">{intro}</p>
+      {ratingSummary && (
+        <RatingSummary
+          rating={ratingSummary.rating}
+          reviewCount={ratingSummary.reviewCount}
+          source={ratingSummary.source}
+        />
+      )}
+      <div class="review-grid">
+        {items.map((item) => (
+          <ReviewCard
+            author={item.author}
+            quote={item.quote}
+            rating={item.rating}
+          />
+        ))}
+      </div>
+    </Section>
+  )
+}
+
+<style>
+  .review-grid {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .review-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

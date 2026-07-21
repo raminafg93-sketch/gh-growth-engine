@@ -2,7 +2,7 @@
 
 Astro-Grundgerüst der künftigen KFZ-GutachtenHelden-Website. **Nicht live, nicht deployed.**
 
-Die aktuelle Live-Website läuft weiterhin unvermindert auf Framer unter `https://www.kfz-gutachtenhelden.de`. Dieser Workspace ist das technische Fundament für einen späteren, schrittweisen Umzug (siehe `docs/migration/framer-to-astro-strategy.md`) — noch kein Nachbau, keine Migration.
+Die aktuelle Live-Website läuft weiterhin unvermindert auf Framer unter `https://www.kfz-gutachtenhelden.de`. Dieser Workspace enthält ein Design System v1, eine Komponentenbibliothek und eine erste, komponentenbasiert neu aufgebaute Homepage-Version (siehe `docs/migration/homepage-parity-and-improvement-report.md`) — technisches Fundament für einen späteren, schrittweisen Umzug (siehe `docs/migration/framer-to-astro-strategy.md`), noch keine Migration.
 
 ## Befehle
 
@@ -18,14 +18,16 @@ Alternativ direkt in diesem Ordner: `pnpm dev`, `pnpm build`, `pnpm check`, `pnp
 
 ## Struktur
 
-- `src/pages/` — Astro-Seiten (Dateibasiertes Routing)
+- `src/pages/` — Astro-Seiten (Dateibasiertes Routing); `index.astro` ist der Homepage-Neuaufbau
 - `src/layouts/` — Seitenrahmen (`BaseLayout.astro`)
-- `src/components/` — nach Zweck gruppiert: `layout`, `navigation`, `sections`, `conversion`, `trust`, `seo`, `forms`, `ui`
+- `src/components/` — nach Zweck gruppiert: `layout`, `navigation`, `sections`, `conversion`, `trust`, `seo`, `forms`, `ui` — siehe `docs/architecture/component-library.md`
+- `src/styles/` — Design System v1: `tokens.css`, `typography.css`, `utilities.css`, `global.css` — siehe `docs/architecture/design-system.md`
 - `src/content/` — künftige Content-Collections: `services`, `guides`, `blog`, `faq`, `locations`, `reviews` (aktuell leer, `.gitkeep`)
 - `src/data/site.ts` — zentrale, typisierte Unternehmenskonfiguration (Quelle: `02_COMPANY/01_company-facts.md`, `00_GH_MASTER_CONTEXT.md`)
+- `src/data/homepage.ts` — Homepage-spezifische Inhalte (Hero, Leistungen, Ablauf, FAQ, …)
 - `src/assets/` — weboptimierte Assets (siehe `docs/architecture/asset-strategy.md`)
 - `public/` — statische Dateien, inkl. `robots.txt` (aktuell `Disallow: /`, da nicht für den Livebetrieb bestimmt)
 
 ## Status
 
-Technisches Grundgerüst mit einer internen Vorschauseite (`/`, `noindex`, sichtbar als "Interne Website-V2-Vorschau" gekennzeichnet). Kein Homepage-Nachbau, keine Domain-Anbindung, kein Live-Deployment. Details: `docs/architecture/website-architecture.md`.
+Homepage v1 mit Design System, Komponentenbibliothek und interner Vorschauseite (`/`, `noindex`, sichtbar als "Interne Website-V2-Vorschau" gekennzeichnet). Keine Domain-Anbindung, kein Live-Deployment. Details: `docs/architecture/website-architecture.md`, Alt-Neu-Vergleich: `docs/migration/homepage-parity-and-improvement-report.md`.

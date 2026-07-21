@@ -1,40 +1,45 @@
 ---
+/**
+ * Homepage v2 — Grundgerüst-Neuaufbau. Siehe:
+ * - docs/migration/current-homepage-inventory.md (Bestand + Kategorisierung)
+ * - docs/migration/homepage-optimization-matrix.md (was wurde direkt verbessert)
+ * - docs/migration/homepage-parity-and-improvement-report.md (Alt-Neu-Vergleich)
+ *
+ * Noch keine Live-Seite: noindex, sichtbar als interne Vorschau gekennzeichnet.
+ */
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import HeroSection from "@/components/sections/HeroSection.astro";
+import TrustBar from "@/components/sections/TrustBar.astro";
+import ServiceOverview from "@/components/sections/ServiceOverview.astro";
+import ProcessSteps from "@/components/sections/ProcessSteps.astro";
+import RightsAfterAccident from "@/components/sections/RightsAfterAccident.astro";
+import DamageExamples from "@/components/sections/DamageExamples.astro";
+import ReviewSection from "@/components/sections/ReviewSection.astro";
+import LocationSection from "@/components/sections/LocationSection.astro";
+import FaqSection from "@/components/sections/FaqSection.astro";
+import FinalCtaSection from "@/components/sections/FinalCtaSection.astro";
 import { site } from "@/data/site";
 ---
 
 <BaseLayout
-  title={`Interne Vorschau · ${site.brandName}`}
-  description="Technisches Grundgerüst der künftigen Astro-Website. Keine Live-Seite."
+  title={site.seoDefaults.title}
+  description={site.seoDefaults.description}
   noindex={true}
 >
   <p class="preview-banner">
     Interne Website-V2-Vorschau – nicht für den Livebetrieb
   </p>
 
-  <section>
-    <h1>{site.brandName}</h1>
-    <p>
-      Dieses Grundgerüst zeigt, dass Astro-Build, globales Layout, lokale
-      Styles, die zentrale Unternehmenskonfiguration, die SEO-Komponente, Header
-      und Footer technisch funktionieren. Es ist ausdrücklich
-      <strong>nicht</strong> die neue Homepage — die aktuelle Framer-Website unter
-      <code>{site.websiteUrl}</code> bleibt unverändert live.
-    </p>
-  </section>
-
-  <section>
-    <h2>Qualifikation &amp; Nachweise</h2>
-    <ul class="grid">
-      {site.qualifications.map((item) => <li>{item}</li>)}
-      {site.proofClaims.map((item) => <li>{item}</li>)}
-    </ul>
-  </section>
-
-  <section>
-    <h2>Erreichbarkeit</h2>
-    <p>{site.address.official} &middot; {site.hours}</p>
-  </section>
+  <HeroSection />
+  <TrustBar />
+  <ServiceOverview />
+  <ProcessSteps />
+  <RightsAfterAccident />
+  <DamageExamples />
+  <ReviewSection />
+  <LocationSection />
+  <FaqSection />
+  <FinalCtaSection />
 </BaseLayout>
 
 <style>
@@ -43,32 +48,7 @@ import { site } from "@/data/site";
     color: var(--color-white);
     text-align: center;
     padding: var(--space-2) var(--space-4);
-    font-weight: 700;
-    border-radius: 0.5rem;
-    margin-block: var(--space-4);
-  }
-
-  section {
-    margin-block: var(--space-8);
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-2);
-    padding: 0;
-    list-style: none;
-  }
-
-  .grid li {
-    background: var(--color-grey-light);
-    padding: var(--space-4);
-    border-radius: 0.5rem;
-  }
-
-  @media (min-width: 48rem) {
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    font-weight: var(--font-weight-bold);
+    margin: 0;
   }
 </style>

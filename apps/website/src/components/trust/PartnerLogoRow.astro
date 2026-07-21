@@ -1,0 +1,38 @@
+---
+/**
+ * Reihe von Partner-/Kooperationslogos (z. B. Werkstätten, Verbände).
+ * Rendert nichts, solange keine echten, freigegebenen Logos übergeben
+ * werden — aktuell ohne Aufrufer, da keine Partnerlogos bestätigt sind.
+ */
+import type { ImageMetadata } from "astro";
+import ResponsiveImage from "@/components/ui/ResponsiveImage.astro";
+
+interface Logo {
+  src: ImageMetadata;
+  alt: string;
+}
+
+interface Props {
+  logos?: Logo[];
+  class?: string;
+}
+
+const { logos = [], class: className = "" } = Astro.props;
+---
+
+{
+  logos.length > 0 && (
+    <div class:list={["cluster", className]} role="list" aria-label="Partner">
+      {logos.map((logo) => (
+        <div role="listitem">
+          <ResponsiveImage
+            src={logo.src}
+            alt={logo.alt}
+            width={120}
+            height={40}
+          />
+        </div>
+      ))}
+    </div>
+  )
+}

@@ -1,0 +1,55 @@
+---
+/**
+ * LocalBusiness/AutomotiveBusiness-Schema. Ausschließlich Felder aus
+ * site.ts (bestätigte Unternehmensdaten) — kein WebSite-Schema (keine
+ * Sitesearch vorhanden) und kein separates Organization-Schema (keine vom
+ * LocalBusiness abweichende juristische Einheit), um kein unnötiges Schema
+ * auszugeben. `url` zeigt bewusst auf die aktuelle Live-Website, da diese
+ * Astro-Seite selbst noch nicht deployt/kanonisch ist.
+ */
+import { site } from "@/data/site";
+
+// Mechanisches Parsing der bereits bestätigten Adresse in
+// 02_COMPANY/01_company-facts.md ("Drehbahn 5, 20354 Hamburg") in
+// schema.org-PostalAddress-Felder — keine neue Information, nur Formatwechsel.
+const [streetAddress, cityPart] = site.address.official.split(", ");
+const [postalCode, addressLocality] = (cityPart ?? "").split(" ");
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "AutomotiveBusiness"],
+  name: site.companyName,
+  alternateName: site.brandName,
+  url: site.websiteUrl,
+  telephone: site.phone.display,
+  email: site.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress,
+    postalCode,
+    addressLocality,
+    addressCountry: "DE",
+  },
+  areaServed: site.serviceArea,
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    opens: "08:00",
+    closes: "22:00",
+  },
+};
+---
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(jsonLd)}
+  is:inline
+/>

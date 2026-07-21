@@ -1,0 +1,44 @@
+---
+/**
+ * Konkrete Schadenbeispiele. Rendert bewusst NICHTS, solange
+ * `homepage.damageExamples.items` leer ist — es gibt aktuell keine echten,
+ * freigegebenen Einzelfallbeispiele in der Wissensbasis (siehe
+ * docs/migration/current-homepage-inventory.md, Sektion "Schadenbeispiele").
+ * Kundendaten dürfen ohnehin nicht in diesem Repository gespeichert werden.
+ */
+import Section from "@/components/layout/Section.astro";
+import Card from "@/components/ui/Card.astro";
+import { homepage } from "@/data/homepage";
+
+const { items } = homepage.damageExamples;
+---
+
+{
+  items.length > 0 && (
+    <Section id="schadenbeispiele" background="surface">
+      <h2>Schadenbeispiele</h2>
+      <div class="damage-grid">
+        {items.map((item) => (
+          <Card>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            {item.amount && <p class="damage-grid__amount">{item.amount}</p>}
+          </Card>
+        ))}
+      </div>
+    </Section>
+  )
+}
+
+<style>
+  .damage-grid {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .damage-grid__amount {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-brand);
+  }
+</style>

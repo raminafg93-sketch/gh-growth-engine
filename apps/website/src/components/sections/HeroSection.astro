@@ -1,0 +1,61 @@
+---
+/**
+ * Hero. Leitclaim (H1) und Kernbotschaft sind bestätigter, freigegebener
+ * Wortlaut aus 01_BRAND/04_claims.md — hier nicht neu formuliert.
+ */
+import Section from "@/components/layout/Section.astro";
+import Badge from "@/components/ui/Badge.astro";
+import QualificationBadge from "@/components/trust/QualificationBadge.astro";
+import PrimaryCtaGroup from "@/components/conversion/PrimaryCtaGroup.astro";
+import { homepage } from "@/data/homepage";
+import { site } from "@/data/site";
+---
+
+<Section id="hero" background="page" class="hero">
+  <Badge tone="accent">{homepage.hero.eyebrow}</Badge>
+  <h1>{homepage.hero.headline}</h1>
+  <p class="lede">{homepage.hero.subheadline}</p>
+  {homepage.hero.supportingPoints.map((point) => <p>{point}</p>)}
+
+  <PrimaryCtaGroup size="lg" class="hero__cta" />
+
+  <div class="cluster hero__qualifications">
+    {
+      site.qualifications
+        .slice(1, 4)
+        .map((q) => <QualificationBadge>{q}</QualificationBadge>)
+    }
+  </div>
+</Section>
+
+<style>
+  /*
+   * Wichtig: .hero wird als class-Prop an <Section> (eine andere Komponente)
+   * durchgereicht. Astros Style-Scoping stempelt den Scope-Attributwert
+   * anhand der Datei, die das Element tatsächlich rendert (hier: Section.astro),
+   * nicht anhand der aufrufenden Datei. Ein gescoptes ".hero …"-Selektor
+   * würde daher nie greifen — deshalb hier vollständig :global().
+   */
+  :global(.hero .container) {
+    max-width: var(--container-md);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  :global(.hero) h1 {
+    margin: 0;
+  }
+
+  :global(.hero .hero__cta) {
+    justify-content: center;
+    margin-top: var(--space-4);
+  }
+
+  .hero__qualifications {
+    justify-content: center;
+    margin-top: var(--space-4);
+  }
+</style>
