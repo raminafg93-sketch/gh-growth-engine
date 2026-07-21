@@ -20,6 +20,39 @@ Entscheidungen unten sind REVIEW, bis ein echter Seitenzugriff vorliegt.
 
 Vollständige Datenpunkte je URL: `13_REPORTS/02_url-inventory.csv`.
 
+## Empfohlene Zielstruktur (2026-07-21)
+
+Auf Basis der Informationsarchitektur-Analyse (`13_REPORTS/06_information-architecture.md`) —
+Suchintentions-Abgleich statt reiner Technik-Check. Vollständige Begründung, Priorisierung und
+Umsetzungsreihenfolge dort. Zielstruktur:
+
+```
+/                                   Homepage
+/leistungen                         Hub: Leistungsübersicht
+/leistungen/unfallgutachten-hamburg
+/leistungen/schadengutachten-hamburg
+/leistungen/wertgutachten-hamburg
+/leistungen/kostenvoranschlag
+/leistungen/kaufberatung
+/leistungen/elektroauto-gutachten
+/ratgeber                           Hub: Ratgeber-Übersicht
+/ratgeber/was-tun-nach-dem-unfall
+/ratgeber/unfallgegner-ist-schuld
+/ratgeber/versicherung-schickt-gutachter
+/ratgeber/versicherung-zahlt-zu-wenig
+/ratgeber/kostenvoranschlag-oder-gutachten
+/ratgeber/wertminderung
+/ratgeber/nutzungsausfall
+/ratgeber/totalschaden
+/ratgeber/restwert
+/ratgeber/wiederbeschaffungswert
+/ratgeber/fiktive-abrechnung
+/partner                            später: sekundäre Zielgruppen
+/kontakt
+/impressum
+/datenschutz
+```
+
 ## Audit-Ziel
 
 Bestätigte Domain: https://www.kfz-gutachtenhelden.de
