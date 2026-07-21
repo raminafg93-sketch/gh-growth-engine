@@ -41,6 +41,16 @@ Jede Information hat genau eine Primärdatei. Andere Dateien dürfen darauf verw
 | Reports / Audits | `13_REPORTS/` | betroffene Strategie-Dateien |
 | Google-Drive-Struktur | `14_ASSETS/REFERENCES/google-drive-structure.md` | Master Context Abschnitt 11, Proof-Register |
 | Website-Audit-Skill | `.claude/skills/website-inventory/SKILL.md` | URL-Map, Reports |
+| Monorepo-Architektur | `docs/architecture/monorepo-architecture.md` | ADRs, CLAUDE.md |
+| Website-Architektur (`apps/website`) | `docs/architecture/website-architecture.md` | apps/website/README.md, Content-Flow |
+| Content-Flow (Wissen → SEO → Website-Code) | `docs/architecture/content-flow.md` | 09_CONTENT_ENGINE, 05_WEBSITE_SEO |
+| Asset-Strategie | `docs/architecture/asset-strategy.md` | 01_BRAND, 14_ASSETS |
+| Architekturentscheidungen (ADRs) | `docs/architecture/decisions/` | Monorepo-Architektur, Website-Architektur |
+| Repository-Bestandsaufnahme | `docs/architecture/current-repository-inventory.md` | (historisches Momentaufnahme-Dokument) |
+| Vercel-Vorbereitung | `docs/deployment/vercel-preparation.md` | Website-Architektur, CI-Workflow |
+| Framer-zu-Astro-Migrationsstrategie | `docs/migration/framer-to-astro-strategy.md` | 13_REPORTS, 05_WEBSITE_SEO/02_url-map.md |
+| Claude-Monorepo-Workflow | `docs/workflows/claude-code-monorepo-workflow.md` | CLAUDE.md, GitHub-Autonomieregeln |
+| Owner-Workflow | `docs/workflows/owner-workflow.md` | CLAUDE.md, GitHub-Autonomieregeln |
 
 ## Pflichtantwort jeder KI bei Änderungen
 

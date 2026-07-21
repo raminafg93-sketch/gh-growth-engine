@@ -1,0 +1,31 @@
+{
+  "name": "gh-growth-engine",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Monorepo: Wissens-, Strategie- und Website-System für KFZ-GutachtenHelden",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "dev": "pnpm --filter website dev",
+    "build": "pnpm --filter website build",
+    "check": "pnpm --filter website check",
+    "lint": "pnpm -r --if-present run lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "pnpm -r --if-present run test",
+    "website:dev": "pnpm --filter website dev",
+    "website:build": "pnpm --filter website build",
+    "website:check": "pnpm --filter website check"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

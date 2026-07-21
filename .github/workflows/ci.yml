@@ -1,0 +1,69 @@
+name: CI
+
+# Prüft nur Installation, Format, Astro/TypeScript-Diagnose und den statischen
+# Build von apps/website. Kein Deployment, keine Domain-Änderung, keine
+# Secrets erforderlich. Pfadfilter verhindern unnötige Läufe bei reinen
+# Wissens-/Dokumentänderungen (siehe docs/deployment/vercel-preparation.md).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/website/**"
+      - "packages/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".npmrc"
+      - ".nvmrc"
+      - ".github/workflows/ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "apps/website/**"
+      - "packages/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".npmrc"
+      - ".nvmrc"
+      - ".github/workflows/ci.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-check:
+    name: Install, format, check, build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "pnpm"
+
+      - name: Install dependencies (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Astro/TypeScript check
+        run: pnpm website:check
+
+      - name: Build website (static)
+        run: pnpm website:build

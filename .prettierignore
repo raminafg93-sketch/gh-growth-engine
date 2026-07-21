@@ -1,0 +1,28 @@
+# Bestehende Wissensbasis wird inhaltlich per Document Map gepflegt, nicht per
+# Code-Formatierung. Prettier greift hier bewusst nicht ein, um unnötige,
+# fachfremde Diffs an gewachsenen Markdown-Dateien zu vermeiden.
+01_BRAND/
+02_COMPANY/
+03_OFFER/
+04_AUDIENCE/
+05_WEBSITE_SEO/
+06_GOOGLE/
+07_META/
+08_COACHING_ACADEMY/
+09_CONTENT_ENGINE/
+10_DATA_INSIGHTS/
+11_OPERATIONS/
+12_AI_SYSTEM/
+13_REPORTS/
+14_ASSETS/
+00_GH_MASTER_CONTEXT.md
+00_GH_DOCUMENT_MAP.md
+00_GH_PRINCIPLES.md
+00_GH_CHANGE_REQUEST_TEMPLATE.md
+CLAUDE.md
+.claude/
+
+# generiert / Build-Output
+pnpm-lock.yaml
+**/dist/
+**/.astro/
