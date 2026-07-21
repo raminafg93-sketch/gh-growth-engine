@@ -1,7 +1,7 @@
 # Framer-Agent-Pilot — Ergebnisbericht
 
-Stand: 2026-07-21 (aktualisiert nach erstem Autorisierungsversuch)
-Status: **Einrichtung abgeschlossen. Erster echter Autorisierungsversuch durchgeführt und an einer strukturellen Umgebungs-Inkompatibilität gescheitert (siehe Abschnitt 3) — nicht an fehlender Freigabe.**
+Stand: 2026-07-21 (aktualisiert nach erfolgreicher Autorisierung, Verbindung an Netzwerkrichtlinie gescheitert)
+Status: **Projekt erfolgreich autorisiert. Live-Session-Aufbau scheitert an einer Netzwerkrichtlinie dieser Arbeitsumgebung, die `api.framer.com` blockiert (siehe Abschnitt 3) — nicht an Ramins Framer-Konto/-Plan.**
 
 Dieser Bericht dokumentiert ehrlich, was in diesem Auftrag tatsächlich durchgeführt werden konnte, und wo er aus einem echten, nicht umgehbaren Grund pausiert wurde. Es werden **keine** Ergebnisse für Phasen erfunden, die technisch nicht erreicht wurden.
 
@@ -13,7 +13,7 @@ Dieser Bericht dokumentiert ehrlich, was in diesem Auftrag tatsächlich durchgef
 |---|---|
 | 1. Voraussetzungen prüfen | ✅ abgeschlossen |
 | 2. Offizielle Framer-Agent-Integration einrichten | ✅ abgeschlossen |
-| 3. Framer-Projekt verbinden | ⏸ **pausiert — strukturelle Umgebungs-Inkompatibilität (Remote-Container vs. lokaler Browser-Callback)** |
+| 3. Framer-Projekt verbinden | ⏸ **Autorisierung ✅ erfolgreich, Live-Session ❌ blockiert durch Netzwerkrichtlinie (`api.framer.com`)** |
 | 4–11 (Inventur, Testbranch, Praxistest, Motion, Responsive, SEO, Vergleich) | nicht begonnen (setzen Phase 3 voraus) |
 
 ---
@@ -61,7 +61,7 @@ Ergebnis: `Installed 2 skills to /root/.agents/skills, /root/.claude/skills`
 - Keine Secrets in diesem Repository gespeichert.
 - Hinweis: Der offizielle Installer zeigt einen Telemetrie-Hinweis ("Framer collects telemetry... You can opt out at any time by running: `@framer/agent telemetry disable`"). Nicht deaktiviert — das ist eine Präferenzentscheidung von Ramin, keine sicherheitsrelevante Änderung an GH-Daten.
 
-## 3. Framer-Projekt verbinden (Phase 3) — **PAUSIERT, mit echtem Befund**
+## 3. Framer-Projekt verbinden (Phase 3)
 
 ### Bereitgestellter Projektlink
 
@@ -101,10 +101,63 @@ Die CLI kennt den Aufruf `project auth <projectUrlOrId> [apiKey]` mit optionalem
 1. **Claude Code lokal auf Ramins eigenem Rechner** ausführen (dort, wo auch der Browser läuft) — damit funktioniert der Callback exakt wie vom Hersteller vorgesehen. Das ist der offiziell beschriebene, unterstützte Weg.
 2. **Bei Framer direkt nachfragen**, ob ein API-Key-basierter Autorisierungsweg für Remote-/Cloud-Coding-Agenten existiert, und falls ja, wo er erzeugt wird.
 
+### Zweiter Versuch — erfolgreiche Autorisierung über den API-Key-Weg
+
+Auf Ramins Wunsch wurde der Browser-Freigabeversuch wiederholt (neuer Callback-Port, Prozess bewusst nicht vorzeitig beendet). Ramin bestätigte die Freigabe im Framer-Dialog ("Authorize external agent — Approve edit access for your external agent to the project 'GutachtenHelden'" → **Approve**). Framer leitete den Browser danach korrekt mit einem gültigen, projektgebundenen API-Key an `127.0.0.1:<port>/callback?apiKey=...` weiter — der Redirect selbst schlug wie beim ersten Mal fehl (falsche Zieladresse), aber der **API-Key war damit clientseitig sichtbar und gültig**.
+
+Dieser Key wurde über den offiziell dokumentierten CLI-Parameter genutzt (keine Umgehung, sondern der von der CLI selbst vorgesehene Alternativweg):
+
+```
+npx @framer/agent@latest project auth "<Projektlink>" "<apiKey>"
+→ Project uDdG1ZwZKuhNmduicUsQ saved
+```
+
+`project list` bestätigte danach: `[{"projectId": "uDdG1ZwZKuhNmduicUsQ"}]` — **Projektautorisierung erfolgreich.**
+
+**Sicherheitshinweis:** Der API-Key war kurzzeitig im Klartext in einem Chat-Screenshot sichtbar. Er wurde ausschließlich lokal zur Autorisierung verwendet, nicht in dieses Repository geschrieben, nicht committed und wird hier nicht im Klartext wiederholt. Empfehlung an Ramin: den Key in den Framer-Projekteinstellungen zu widerrufen/neu zu erzeugen, sobald dieser Pilot abgeschlossen ist.
+
+### Dritter Blocker — Live-Session scheitert an Netzwerkrichtlinie
+
+Mit autorisiertem Projekt wurde eine Session erstellt (`session new "uDdG1ZwZKuhNmduicUsQ"`), um den vereinbarten Read-only-Test durchzuführen. Das schlug zweimal identisch fehl:
+
+```
+Failed to create session: FramerAPIError: Connection timeout after 90000ms
+```
+
+Debug-Log (`--debug`) zeigt die Ursache eindeutig:
+
+```
+session.new: headlessServerUrl=wss://api.framer.com/channel/headless-plugin
+relay: relay server ready
+session.new: calling createSession on relay...
+[hängt bis Timeout]
+```
+
+Direkter Verbindungstest aus dieser Umgebung bestätigt: `curl https://api.framer.com` → `CONNECT tunnel failed, response 403`. Die interne Proxy-Diagnose dieser Arbeitsumgebung protokolliert das explizit:
+
+```json
+{
+  "kind": "connect_rejected",
+  "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+  "host": "api.framer.com:443"
+}
+```
+
+**Das ist eine Netzwerk-Egress-Richtlinie dieser spezifischen Claude-Code-Arbeitsumgebung, kein Framer-Konto-/Plan-Problem und keine fehlende Freigabe durch Ramin.** `framer.com` (für den Autorisierungs-Redirect) ist erreichbar, `api.framer.com` (für die Live-Session/den Kontextabruf) ist blockiert. Gemäß der Diagnoseanleitung dieser Umgebung ("Do not retry or route around it — report the blocked host") wurden keine weiteren Verbindungsversuche unternommen.
+
+### Damit einhergehende Konsequenz für diesen Piloten
+
+Der vereinbarte Read-only-Test (Projektname, Zugriff, Seiten, Komponenten, CMS, Branch-Unterstützung) **konnte nicht durchgeführt werden** — nicht weil die Autorisierung fehlschlug (sie war erfolgreich), sondern weil der anschließende Datenabruf technisch blockiert ist. Alle Phasen ab hier (Inventur, Testbranch, Praxistest, Motion, Responsive, SEO, Vergleich) bleiben aus demselben Grund unerreichbar, solange diese Arbeitsumgebung `api.framer.com` nicht zulässt.
+
+### Sichere Alternativen (keine davon automatisch ausgeführt)
+
+1. **Diesen Piloten auf Ramins eigenem Rechner mit lokalem Claude Code fortsetzen** — dort gilt keine unternehmensseitige Egress-Beschränkung dieser Cloud-Umgebung, und sowohl der Browser-Callback als auch die `api.framer.com`-Verbindung sollten funktionieren. Das bereits autorisierte Projekt (`uDdG1ZwZKuhNmduicUsQ`) müsste dort einmalig neu autorisiert werden (neue lokale Installation, kein geteilter Zugangsdatenspeicher zwischen Umgebungen).
+2. **Freigabe von `api.framer.com` in der Netzwerkrichtlinie dieser Arbeitsumgebung beantragen** (falls die Umgebung das zulässt) — das müsste Ramin bzw. ein Administrator der Umgebungskonfiguration klären, nicht Claude selbst.
+
 ### Status der offenen Punkte aus der ursprünglichen Anleitung
 
-- Framer-Branching-Unterstützung konnte **nicht verifiziert** werden (Verbindung kam nicht zustande) — weiterhin offen.
-- Kein Hinweis auf ein kostenpflichtiges Upgrade gefunden, aber ebenfalls nicht verifizierbar ohne Verbindung.
+- Framer-Branching-Unterstützung konnte **weiterhin nicht verifiziert** werden (Live-Session kam nicht zustande).
+- Kein Hinweis auf ein kostenpflichtiges Upgrade gefunden — die Blockade liegt nachweislich an der Netzwerkrichtlinie, nicht am Framer-Plan.
 
 ## 4.–11. (Inventur, Testbranch, Praxistest, Motion, Responsive, SEO, Vergleich)
 
@@ -125,4 +178,4 @@ Die CLI kennt den Aufruf `project auth <projectUrlOrId> [apiKey]` mit optionalem
 
 ## Nächster Schritt
 
-Wartet auf Ramins Entscheidung, wie mit dem Umgebungs-Blocker umgegangen wird (lokale Ausführung vs. Klärung eines API-Key-Wegs mit Framer). Sobald eine Verbindung zustande kommt — gleich auf welchem Weg —, wird dieser Pilot mit dem vereinbarten Read-only-Test (Projektname, Zugriff, Seiten, Komponenten, CMS, Branch-Unterstützung) fortgesetzt, danach erst der sichere Testbranch und die restlichen Phasen — nicht als neuer Auftrag.
+Projektautorisierung ist erledigt und muss nicht wiederholt werden (sofern in derselben oder einer gleichwertigen Umgebung fortgesetzt). Es fehlt ausschließlich die Netzwerk-Erreichbarkeit von `api.framer.com`. Wartet auf Ramins Entscheidung: lokale Fortsetzung auf seinem eigenen Rechner, oder Klärung/Freigabe der Netzwerkrichtlinie dieser Arbeitsumgebung. Sobald `api.framer.com` erreichbar ist, wird dieser Pilot direkt mit dem vereinbarten Read-only-Test fortgesetzt (Projektname, Zugriff, Seiten, Komponenten, CMS, Branch-Unterstützung), danach erst der sichere Testbranch und die restlichen Phasen — nicht als neuer Auftrag.
