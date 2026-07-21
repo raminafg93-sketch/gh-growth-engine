@@ -35,6 +35,7 @@ Jede Information hat genau eine Primärdatei. Andere Dateien dürfen darauf verw
 | Entscheidungen | `11_OPERATIONS/01_decision-log.md` | Master Context bei großen Änderungen |
 | Claim-Nachweise | `11_OPERATIONS/02_proof-register.md` | Google Drive |
 | AI-Arbeitsweise | `12_AI_SYSTEM/01_ai-operating-system.md` | CLAUDE.md, Skills, Agenten |
+| GitHub-Autonomieregeln | `12_AI_SYSTEM/03_github-autonomy.md` | CLAUDE.md, Decision Log |
 | Projektstatus | `11_OPERATIONS/03_roadmap.md` | Master Context |
 | Reports / Audits | `13_REPORTS/` | betroffene Strategie-Dateien |
 | Google-Drive-Struktur | `14_ASSETS/REFERENCES/google-drive-structure.md` | Master Context Abschnitt 11, Proof-Register |

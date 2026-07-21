@@ -77,3 +77,19 @@ Claude darf ohne ausdrückliche Freigabe nicht:
 - Budgets ändern
 - Nachrichten versenden
 - Domains oder DNS verändern
+
+Die verbindlichen Autonomiestufen für repository-interne GitHub-Arbeit (Branches,
+Commits, Pull Requests, Merges) sind in `12_AI_SYSTEM/03_github-autonomy.md`
+festgelegt:
+
+- **GRÜN** – Claude darf repository-interne Änderungen (Dateien, Reports,
+  Roadmap, Skills, Audits) eigenständig committen, pushen, per Pull Request
+  einreichen und selbst mergen.
+- **GELB** – bei produktivem Website-Code, Tracking/Consent, Redirects,
+  Rechtstexten oder neuen Kosten-/Erfolgsversprechen erstellt Claude nur den
+  Pull Request; Ramin entscheidet über den Merge.
+- **ROT** – Live-Veröffentlichung, DNS/Domains, Ads-Budgets, externe
+  Nachrichten und Zugangsdaten bleiben immer bei Ramin.
+
+Details, Voraussetzungen und die Unterbrechungsregel: siehe
+`12_AI_SYSTEM/03_github-autonomy.md`.

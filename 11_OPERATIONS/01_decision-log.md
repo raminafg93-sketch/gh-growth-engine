@@ -15,3 +15,4 @@
 - Externe Personen erhalten keine Schreibrechte.
 - Änderungen am Repository erfolgen nur durch Ramin oder ausdrücklich autorisierte Systeme.
 - Kundendaten, Gutachten, Kennzeichen, Fahrzeugpapiere, Zugangsdaten und vertrauliche Arbeitgeberunterlagen dürfen niemals im Repository gespeichert werden.
+- Seit 2026-07-21 gelten verbindliche Autonomiestufen für GitHub-Arbeit (siehe `12_AI_SYSTEM/03_github-autonomy.md`): Stufe GRÜN erlaubt Claude, repository-interne Änderungen (Dateien, Reports, Roadmap, Audits) selbstständig zu committen, pushen, per Pull Request einzureichen und selbst zu mergen. Stufe GELB (produktiver Website-Code, Tracking/Consent, Redirects, Rechtstexte, neue Kosten-/Erfolgsversprechen) erlaubt Pull Requests, aber keinen Selbst-Merge. Stufe ROT (Live-Veröffentlichung, DNS/Domains, Ads-Budgets, externe Nachrichten, Zugangsdaten) bleibt immer bei Ramin.

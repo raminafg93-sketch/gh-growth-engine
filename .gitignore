@@ -14,6 +14,7 @@ data/private/
 data/raw/
 references/private/
 *.csv
+!13_REPORTS/*.csv
 *.xlsx
 *.xls
 *.zip
