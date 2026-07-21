@@ -6,8 +6,9 @@ Vor jeder größeren Aufgabe lesen:
 
 1. `00_GH_MASTER_CONTEXT.md`
 2. `00_GH_DOCUMENT_MAP.md`
-3. die fachlich betroffenen Dateien
-4. `11_OPERATIONS/01_decision-log.md`
+3. `00_GH_PRINCIPLES.md`
+4. die fachlich betroffenen Dateien
+5. `11_OPERATIONS/01_decision-log.md`
 
 ## Oberziel
 
