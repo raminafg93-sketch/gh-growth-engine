@@ -82,8 +82,9 @@ Das Repository ist öffentlich — jede Datei wird entsprechend behandelt.
 ## Aktueller Status der Migration
 
 - Live-Website: Framer, unter `https://www.kfz-gutachtenhelden.de`, **unverändert und vollständig aktiv**.
-- `apps/website`: technisches Grundgerüst mit interner, nicht indexierter Vorschauseite (`noindex`, `robots.txt: Disallow: /`). Kein Homepage-Nachbau, kein Deployment, kein Domain-Wechsel.
-- Nächster geplanter, aber noch nicht beauftragter Schritt: forensische Inventarisierung und technisch-konvertierender Paritätsnachbau der Framer-Homepage (siehe `docs/migration/framer-to-astro-strategy.md`).
+- `apps/website`: Design System v1 (`docs/architecture/design-system.md`), wiederverwendbare Komponentenbibliothek (`docs/architecture/component-library.md`) und eine erste, komponentenbasiert neu aufgebaute Homepage-Version. Weiterhin eine interne, nicht indexierte Vorschauseite (`noindex`, `robots.txt: Disallow: /`) — kein Deployment, kein Domain-Wechsel.
+- Vergleich Alt (Framer) vs. Neu (Astro): `docs/migration/homepage-parity-and-improvement-report.md`.
+- Nächster geplanter, aber noch nicht beauftragter Schritt: echter technischer Crawl/Export der Live-Seite (aktuell netzwerkseitig blockiert) und darauf aufbauende Paritätsverfeinerung, danach Vercel-Anbindung (siehe `docs/migration/framer-to-astro-strategy.md`).
 
 ## Wichtigste Startdateien
 

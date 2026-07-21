@@ -1,0 +1,44 @@
+---
+/**
+ * Kompakte Kontakt-Zusammenfassung für LocationSection/Footer.
+ * Ausschließlich Daten aus site.ts — keine Duplikate hartcodieren.
+ */
+import Card from "@/components/ui/Card.astro";
+import { site } from "@/data/site";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<Card elevated class={className}>
+  <address class="contact-card">
+    <p class="contact-card__line">{site.address.official}</p>
+    <p class="contact-card__line">
+      <a href={site.phone.href}>{site.phone.display}</a>
+    </p>
+    <p class="contact-card__line">
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
+    <p class="contact-card__line">
+      {site.hours}{site.service247 ? " · 24/7-Service" : ""}
+    </p>
+  </address>
+</Card>
+
+<style>
+  .contact-card {
+    font-style: normal;
+    margin: 0;
+  }
+
+  .contact-card__line {
+    margin: 0 0 var(--space-2);
+  }
+
+  .contact-card__line:last-child {
+    margin-bottom: 0;
+  }
+</style>

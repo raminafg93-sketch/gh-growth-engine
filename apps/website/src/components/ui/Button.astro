@@ -1,0 +1,88 @@
+---
+/**
+ * Generischer Button/Link-Primitiv. Rendert ein <a>, wenn `href` gesetzt
+ * ist, sonst ein <button>. Einsatz: überall dort, wo KEIN spezifischer
+ * Conversion-CTA (siehe components/conversion/) gebraucht wird.
+ *
+ * Nicht geeignet für: WhatsApp-/Anruf-CTAs — dafür WhatsAppButton/CallButton
+ * verwenden, die die Conversion-Priorität aus 05_WEBSITE_SEO/03_conversion-system.md
+ * technisch absichern.
+ */
+interface Props {
+  variant?: "primary" | "secondary" | "ghost";
+  size?: "md" | "lg";
+  href?: string;
+  type?: "button" | "submit";
+  class?: string;
+}
+
+const {
+  variant = "primary",
+  size = "md",
+  href,
+  type = "button",
+  class: className = "",
+} = Astro.props;
+
+const classes = ["btn", `btn--${variant}`, `btn--${size}`, className];
+const Tag = href ? "a" : "button";
+---
+
+<Tag class:list={classes} href={href} type={href ? undefined : type}>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    height: var(--button-height-md);
+    padding-inline: var(--space-6);
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-base);
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition:
+      background var(--transition-fast),
+      color var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .btn--lg {
+    height: var(--button-height-lg);
+    padding-inline: var(--space-8);
+    font-size: var(--text-lg);
+  }
+
+  .btn--primary {
+    background: var(--color-accent);
+    color: var(--color-text-inverse);
+  }
+
+  .btn--primary:hover {
+    background: var(--color-accent-hover);
+    color: var(--color-text-inverse);
+  }
+
+  .btn--secondary {
+    background: transparent;
+    border-color: var(--color-navy);
+    color: var(--color-navy);
+  }
+
+  .btn--secondary:hover {
+    background: var(--color-bg-surface);
+    color: var(--color-navy);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-text-inverse);
+    border-color: currentColor;
+  }
+</style>

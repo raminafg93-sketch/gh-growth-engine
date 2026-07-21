@@ -1,0 +1,139 @@
+---
+/**
+ * Mobiles Disclosure-Menü mit Sprunglinks zu den Homepage-Sektionen.
+ * Minimaler, abhängigkeitsfreier Vanilla-JS-Toggle (kein Framework) —
+ * bewusste Ausnahme von "möglichst kein JS", weil ein reiner CSS-Checkbox-Hack
+ * kein korrektes aria-expanded liefert (Accessibility vor JS-Verzicht).
+ */
+interface NavItem {
+  href: string;
+  label: string;
+}
+
+const items: NavItem[] = [
+  { href: "#leistungen", label: "Leistungen" },
+  { href: "#ablauf", label: "Ablauf" },
+  { href: "#faq", label: "Häufige Fragen" },
+  { href: "#standort", label: "Standort" },
+];
+---
+
+<div class="mobile-nav">
+  <button
+    id="mobile-nav-toggle"
+    class="mobile-nav__toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="mobile-nav-panel"
+  >
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+      <path
+        d="M4 6h16M4 12h16M4 18h16"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"></path>
+    </svg>
+    <span class="visually-hidden">Menü öffnen</span>
+  </button>
+
+  <nav
+    id="mobile-nav-panel"
+    class="mobile-nav__panel"
+    aria-label="Hauptnavigation"
+    hidden
+  >
+    <ul>
+      {
+        items.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</div>
+
+<script>
+  const toggle = document.getElementById("mobile-nav-toggle");
+  const panel = document.getElementById("mobile-nav-panel");
+
+  toggle?.addEventListener("click", () => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!expanded));
+    if (expanded) {
+      panel?.setAttribute("hidden", "");
+    } else {
+      panel?.removeAttribute("hidden");
+    }
+  });
+
+  panel?.addEventListener("click", (event) => {
+    if ((event.target as HTMLElement).tagName === "A") {
+      toggle?.setAttribute("aria-expanded", "false");
+      panel.setAttribute("hidden", "");
+    }
+  });
+</script>
+
+<style>
+  .mobile-nav {
+    position: relative;
+  }
+
+  .mobile-nav__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--button-height-md);
+    height: var(--button-height-md);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
+    color: var(--color-text-brand);
+    cursor: pointer;
+  }
+
+  .mobile-nav__toggle svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .mobile-nav__panel {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+    z-index: var(--z-header);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-2);
+    min-width: 12rem;
+  }
+
+  .mobile-nav__panel ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-nav__panel a {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .mobile-nav__panel a:hover {
+    background: var(--color-bg-surface);
+  }
+
+  @media (min-width: 768px) {
+    .mobile-nav {
+      display: none;
+    }
+  }
+</style>

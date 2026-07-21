@@ -1,0 +1,67 @@
+---
+/**
+ * Layout-Primitiv für einen Homepage-Abschnitt. Übernimmt vertikalen
+ * Abstand und Hintergrundfarbe aus Design-Tokens, damit einzelne Sections
+ * nicht jeweils eigenes Spacing erfinden.
+ */
+import Container from "@/components/layout/Container.astro";
+
+interface Props {
+  /** semantische Hintergrundfläche laut Design System (60/30/10-Verhältnis) */
+  background?: "page" | "surface" | "inverse";
+  id?: string;
+  narrow?: boolean;
+  /** Für Sections ohne eigene Überschrift: Landmarken-Label für Screenreader */
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  background = "page",
+  id,
+  narrow = false,
+  ariaLabel,
+  class: className = "",
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={["section", `section--${background}`, className]}
+  aria-label={ariaLabel}
+>
+  <Container narrow={narrow}>
+    <slot />
+  </Container>
+</section>
+
+<style>
+  .section {
+    padding-block: var(--space-16);
+  }
+
+  .section--page {
+    background: var(--color-bg-page);
+  }
+
+  .section--surface {
+    background: var(--color-bg-surface);
+  }
+
+  .section--inverse {
+    background: var(--color-bg-inverse);
+    color: var(--color-text-inverse);
+  }
+
+  .section--inverse :global(h1),
+  .section--inverse :global(h2),
+  .section--inverse :global(h3) {
+    color: var(--color-text-inverse);
+  }
+
+  @media (min-width: 768px) {
+    .section {
+      padding-block: var(--space-24);
+    }
+  }
+</style>

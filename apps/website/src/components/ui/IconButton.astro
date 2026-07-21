@@ -1,0 +1,58 @@
+---
+/**
+ * Icon-only Button/Link. `label` ist Pflicht (wird als aria-label
+ * ausgegeben) — kein Icon-Button ohne zugängliche Beschriftung.
+ */
+interface Props {
+  label: string;
+  href?: string;
+  variant?: "primary" | "secondary";
+  class?: string;
+}
+
+const {
+  label,
+  href,
+  variant = "secondary",
+  class: className = "",
+} = Astro.props;
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+  class:list={["icon-btn", `icon-btn--${variant}`, className]}
+  href={href}
+  aria-label={label}
+  type={href ? undefined : "button"}
+>
+  <slot />
+</Tag>
+
+<style>
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--button-height-md);
+    height: var(--button-height-md);
+    border-radius: var(--radius-full);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background var(--transition-fast);
+  }
+
+  .icon-btn--primary {
+    background: var(--color-accent);
+    color: var(--color-text-inverse);
+  }
+
+  .icon-btn--secondary {
+    background: var(--color-bg-surface);
+    color: var(--color-text-brand);
+  }
+
+  .icon-btn :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+</style>

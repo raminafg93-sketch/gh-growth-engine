@@ -1,0 +1,18 @@
+---
+/**
+ * Kennzeichnet ein Service-/Trust-Versprechen (z. B. 24/7-Service).
+ * Unterschied zu QualificationBadge: Qualifikation = Nachweis/Zertifikat,
+ * TrustBadge = Leistungsversprechen.
+ */
+import Badge from "@/components/ui/Badge.astro";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<Badge tone="accent" class={className}>
+  <slot />
+</Badge>

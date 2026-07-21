@@ -1,0 +1,23 @@
+---
+/**
+ * Standort/Hamburg-Bezug. Kein Kartenembed in v1 (externe Inhalte/Tracking
+ * ohne Prüfung vermeiden) — siehe docs/architecture/homepage-seo-specification.md.
+ */
+import Section from "@/components/layout/Section.astro";
+import ContactCard from "@/components/conversion/ContactCard.astro";
+import { homepage } from "@/data/homepage";
+import { site } from "@/data/site";
+---
+
+<Section id="standort" background="surface">
+  <h2>Vor Ort in {site.serviceArea}</h2>
+  <p class="lede">{homepage.location.intro}</p>
+  <ContactCard class="location-section__card" />
+</Section>
+
+<style>
+  :global(.location-section__card) {
+    margin-top: var(--space-6);
+    max-width: var(--container-sm);
+  }
+</style>

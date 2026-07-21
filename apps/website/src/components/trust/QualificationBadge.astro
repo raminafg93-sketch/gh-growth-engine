@@ -1,0 +1,30 @@
+---
+/**
+ * Kennzeichnet eine bestätigte Qualifikation (02_COMPANY/02_trust-and-proof.md).
+ */
+import Badge from "@/components/ui/Badge.astro";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<Badge tone="neutral" class={className}>
+  <svg
+    viewBox="0 0 20 20"
+    width="14"
+    height="14"
+    fill="none"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      d="M10 2 12.2 6.5 17 7.2 13.5 10.6 14.4 15.5 10 13.1 5.6 15.5 6.5 10.6 3 7.2 7.8 6.5 10 2Z"
+      stroke="currentColor"
+      stroke-width="1.3"
+      stroke-linejoin="round"></path>
+  </svg>
+  <slot />
+</Badge>

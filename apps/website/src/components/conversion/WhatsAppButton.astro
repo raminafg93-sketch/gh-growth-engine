@@ -1,0 +1,45 @@
+---
+/**
+ * WhatsApp-CTA — höchste Priorität in der Conversion-Hierarchie
+ * (05_WEBSITE_SEO/03_conversion-system.md). Rendert bewusst NICHTS, solange
+ * keine bestätigte WhatsApp-Nummer in site.ts hinterlegt ist
+ * (site.whatsapp.status === "missing") — kein Fake-Link. Die Fallback-Logik
+ * auf den Anruf-CTA lebt in PrimaryCtaGroup, nicht hier.
+ */
+import Button from "@/components/ui/Button.astro";
+import { site, isConfirmed } from "@/data/site";
+
+interface Props {
+  variant?: "primary" | "secondary";
+  size?: "md" | "lg";
+  class?: string;
+}
+
+const { variant = "primary", size = "md", class: className = "" } = Astro.props;
+const whatsapp = site.whatsapp;
+---
+
+{
+  isConfirmed(whatsapp) && (
+    <Button
+      href={whatsapp.value.href}
+      variant={variant}
+      size={size}
+      class={className}
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <path
+          d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8.5 9.3c.2-.5.7-1.4 1.2-1.3.3 0 .7.5 1 1 .2.3.2.6.1.9-.1.3-.3.5-.5.8-.2.2-.3.4-.1.7.5.9 1.6 2 2.6 2.4.3.1.5.1.7-.1.2-.2.5-.5.8-.6.3-.1.5-.1.8.1.4.3 1.1.8 1.3 1.1.1.2.1.5 0 .8-.3.7-1.4 1.2-2.1 1.2-1.6.1-3.6-.9-4.9-2.2-1.3-1.3-2.1-2.9-2.1-4.4 0-.5.1-.9.2-1.3Z"
+          fill="currentColor"
+        />
+      </svg>
+      {site.cta.primary}
+    </Button>
+  )
+}

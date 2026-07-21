@@ -1,0 +1,53 @@
+---
+/**
+ * Zentrale SEO-Meta-Komponente. Canonical/OG-Image werden nur ausgegeben,
+ * wenn `astro.config.mjs` bereits eine echte `site`-Domain gesetzt hat
+ * (aktuell bewusst nicht der Fall — siehe docs/deployment/vercel-preparation.md).
+ * Ein relativer/erfundener Canonical wäre schlimmer als keiner.
+ */
+import { getImage } from "astro:assets";
+import { site } from "@/data/site";
+import markLogo from "@/assets/logo/gh-logo-mark.png";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** true, solange eine Seite noch nicht für den Livebetrieb/die Indexierung bestimmt ist. */
+  noindex?: boolean;
+}
+
+const {
+  title = site.seoDefaults.title,
+  description = site.seoDefaults.description,
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site)
+  : undefined;
+const ogImageAsset = canonicalURL
+  ? await getImage({ src: markLogo, width: 512, height: 512 })
+  : undefined;
+const ogImageURL =
+  ogImageAsset && canonicalURL
+    ? new URL(ogImageAsset.src, canonicalURL)
+    : undefined;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+{canonicalURL && <link rel="canonical" href={canonicalURL} />}
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.brandName} />
+<meta property="og:locale" content="de_DE" />
+{canonicalURL && <meta property="og:url" content={canonicalURL} />}
+{ogImageURL && <meta property="og:image" content={ogImageURL} />}
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{ogImageURL && <meta name="twitter:image" content={ogImageURL} />}

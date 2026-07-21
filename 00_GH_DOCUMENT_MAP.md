@@ -45,10 +45,16 @@ Jede Information hat genau eine Primärdatei. Andere Dateien dürfen darauf verw
 | Website-Architektur (`apps/website`) | `docs/architecture/website-architecture.md` | apps/website/README.md, Content-Flow |
 | Content-Flow (Wissen → SEO → Website-Code) | `docs/architecture/content-flow.md` | 09_CONTENT_ENGINE, 05_WEBSITE_SEO |
 | Asset-Strategie | `docs/architecture/asset-strategy.md` | 01_BRAND, 14_ASSETS |
+| Design System v1 (`apps/website`) | `docs/architecture/design-system.md` | 01_BRAND/03_design-system.md, Komponentenbibliothek |
+| Komponentenbibliothek (`apps/website`) | `docs/architecture/component-library.md` | Design System, Website-Architektur |
+| Homepage-SEO-Spezifikation | `docs/architecture/homepage-seo-specification.md` | Website-Architektur, 05_WEBSITE_SEO |
 | Architekturentscheidungen (ADRs) | `docs/architecture/decisions/` | Monorepo-Architektur, Website-Architektur |
 | Repository-Bestandsaufnahme | `docs/architecture/current-repository-inventory.md` | (historisches Momentaufnahme-Dokument) |
 | Vercel-Vorbereitung | `docs/deployment/vercel-preparation.md` | Website-Architektur, CI-Workflow |
 | Framer-zu-Astro-Migrationsstrategie | `docs/migration/framer-to-astro-strategy.md` | 13_REPORTS, 05_WEBSITE_SEO/02_url-map.md |
+| Homepage-Bestandsinventar (forensisch) | `docs/migration/current-homepage-inventory.md` | Optimierungs-Matrix, Parity-Report |
+| Homepage-Optimierungs-Matrix | `docs/migration/homepage-optimization-matrix.md` | Homepage-Bestandsinventar |
+| Homepage-Alt-Neu-Vergleich | `docs/migration/homepage-parity-and-improvement-report.md` | Homepage-Bestandsinventar, Optimierungs-Matrix |
 | Claude-Monorepo-Workflow | `docs/workflows/claude-code-monorepo-workflow.md` | CLAUDE.md, GitHub-Autonomieregeln |
 | Owner-Workflow | `docs/workflows/owner-workflow.md` | CLAUDE.md, GitHub-Autonomieregeln |
 

@@ -1,0 +1,55 @@
+---
+/**
+ * Kompakte Vertrauens-/Aufklärungssektion. Basis: bestätigte Einwände aus
+ * 04_AUDIENCE/02_problems-and-objections.md, Antworten im Rahmen der
+ * rechtlichen Abgrenzung aus 02_COMPANY/03_legal-boundaries.md formuliert
+ * (keine Rechtsberatung, keine Garantien).
+ */
+import Section from "@/components/layout/Section.astro";
+import Card from "@/components/ui/Card.astro";
+import { homepage } from "@/data/homepage";
+---
+
+<Section id="rechte" background="page">
+  <h2>Deine Rechte nach dem Unfall</h2>
+  <p class="lede">{homepage.rightsAfterAccident.intro}</p>
+
+  <div class="rights-grid">
+    {
+      homepage.rightsAfterAccident.points.map((point) => (
+        <Card>
+          <h3>{point.question}</h3>
+          <p>{point.answer}</p>
+        </Card>
+      ))
+    }
+  </div>
+  <p class="text-sm">
+    Individuelle Rechtsberatung erfolgt durch einen Rechtsanwalt.
+  </p>
+</Section>
+
+<style>
+  .rights-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-block: var(--space-8) var(--space-6);
+  }
+
+  .rights-grid h3 {
+    font-size: var(--text-lg);
+    margin: 0 0 var(--space-2);
+  }
+
+  .rights-grid p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .rights-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

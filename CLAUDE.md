@@ -160,3 +160,17 @@ So wenig Dateien wie nötig. So viele Dateien wie fachlich erforderlich. Keine u
 - `docs/workflows/claude-code-monorepo-workflow.md` — konkreter Ablauf für Website- und Wissensaufgaben
 - `docs/workflows/owner-workflow.md` — verständliche Anleitung für Ramin
 - `12_AI_SYSTEM/03_github-autonomy.md` — Autonomiestufen (unverändert führend bei Widerspruch)
+
+## Dauerhafte Website-Bestandsregel
+
+Bei **jeder** Änderung an einer bestehenden Seite — ob Homepage, künftige Leistungsseite oder Ratgeberartikel — gilt: **niemals blind neu schreiben.** Immer in dieser Reihenfolge:
+
+1. **Bestand erfassen** — was existiert aktuell (Inhalt, Struktur, URL, Ranking-Signale), auch wenn ein direkter Seitenzugriff technisch nicht möglich ist (dann: verifizierbare Sekundärquellen nutzen und die Grenze offen dokumentieren, nicht raten).
+2. **Suchintention verstehen** — welches Bedürfnis bedient diese Seite laut `04_AUDIENCE/03_search-intents.md` und verwandten Dateien.
+3. **Conversion-Funktion verstehen** — welchen Schritt im Trichter aus `05_WEBSITE_SEO/03_conversion-system.md` übernimmt diese Seite.
+4. **Kategorisieren** — jedes wesentliche Element in PRESERVE / OPTIMIZE NOW / EXPERIMENT LATER einordnen (siehe `docs/migration/homepage-optimization-matrix.md` als Referenzbeispiel).
+5. **Sichere Optimierungen direkt umsetzen** — technische, semantische, mobile, Accessibility- und Performance-Verbesserungen ohne Aussage-/Strategieänderung.
+6. **Riskante Änderungen dokumentieren, nicht sofort umsetzen** — neue Positionierung, große Textkürzungen, geänderte Suchintention landen in einem Optimierungs-/Migrationsdokument, nicht direkt im Code.
+7. **Bestehende URLs und Rankings schützen** — keine Umbenennung, Zusammenlegung oder Entfernung ohne echten Seitenzugriff und ohne Freigabe.
+
+Diese Regel gilt unverändert für künftige Landingpages und Ratgeberartikel, sobald bestehende Inhalte migriert werden. Referenzumsetzung: `docs/migration/current-homepage-inventory.md`, `docs/migration/homepage-optimization-matrix.md`, `docs/migration/homepage-parity-and-improvement-report.md`.
