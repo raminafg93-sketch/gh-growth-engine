@@ -1,0 +1,30 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+.next/
+.astro/
+coverage/
+*.log
+
+# Private und große Daten
+data/private/
+data/raw/
+references/private/
+*.csv
+*.xlsx
+*.xls
+*.zip
+
+# Kunden- und Schadenakten
+customer-data/
+case-files/
+gutachten/
+schadenfotos/
+fahrzeugpapiere/
+
+# Lokale Claude-Einstellungen
+.claude/settings.local.json
+CLAUDE.local.md
