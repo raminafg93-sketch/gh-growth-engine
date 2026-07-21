@@ -1,7 +1,7 @@
 # Framer-Agent-Pilot — Ergebnisbericht
 
-Stand: 2026-07-21
-Status: **Einrichtung abgeschlossen, Praxistest blockiert bei Phase 3 (Projektautorisierung durch Ramin).**
+Stand: 2026-07-21 (aktualisiert nach erstem Autorisierungsversuch)
+Status: **Einrichtung abgeschlossen. Erster echter Autorisierungsversuch durchgeführt und an einer strukturellen Umgebungs-Inkompatibilität gescheitert (siehe Abschnitt 3) — nicht an fehlender Freigabe.**
 
 Dieser Bericht dokumentiert ehrlich, was in diesem Auftrag tatsächlich durchgeführt werden konnte, und wo er aus einem echten, nicht umgehbaren Grund pausiert wurde. Es werden **keine** Ergebnisse für Phasen erfunden, die technisch nicht erreicht wurden.
 
@@ -13,7 +13,7 @@ Dieser Bericht dokumentiert ehrlich, was in diesem Auftrag tatsächlich durchgef
 |---|---|
 | 1. Voraussetzungen prüfen | ✅ abgeschlossen |
 | 2. Offizielle Framer-Agent-Integration einrichten | ✅ abgeschlossen |
-| 3. Framer-Projekt verbinden | ⏸ **pausiert — Browser-Autorisierung durch Ramin erforderlich** |
+| 3. Framer-Projekt verbinden | ⏸ **pausiert — strukturelle Umgebungs-Inkompatibilität (Remote-Container vs. lokaler Browser-Callback)** |
 | 4–11 (Inventur, Testbranch, Praxistest, Motion, Responsive, SEO, Vergleich) | nicht begonnen (setzen Phase 3 voraus) |
 
 ---
@@ -61,45 +61,50 @@ Ergebnis: `Installed 2 skills to /root/.agents/skills, /root/.claude/skills`
 - Keine Secrets in diesem Repository gespeichert.
 - Hinweis: Der offizielle Installer zeigt einen Telemetrie-Hinweis ("Framer collects telemetry... You can opt out at any time by running: `@framer/agent telemetry disable`"). Nicht deaktiviert — das ist eine Präferenzentscheidung von Ramin, keine sicherheitsrelevante Änderung an GH-Daten.
 
-## 3. Framer-Projekt verbinden (Phase 3) — **PAUSIERT**
+## 3. Framer-Projekt verbinden (Phase 3) — **PAUSIERT, mit echtem Befund**
 
-### Was technisch geprüft wurde (sicher, ohne Kontoverbindung)
+### Bereitgestellter Projektlink
 
-```
-npx @framer/agent@latest project list   →  []   (keine verbundenen Projekte — erwartungsgemäß bei Erstinstallation)
-```
+Ramin stellte den echten Framer-Editor-Projektlink bereit: `https://framer.com/projects/GutachtenHelden--uDdG1ZwZKuhNmduicUsQ` (Projekt-ID `uDdG1ZwZKuhNmduicUsQ`).
 
-### Der eigentliche Blocker
-
-Laut offizieller CLI-Hilfe (`project --help`) und offiziellem README verbindet sich der Agent mit einem Framer-Projekt über:
+### Autorisierungsversuch
 
 ```
-npx @framer/agent@latest project auth <projectUrlOrId> [apiKey]
+npx @framer/agent@latest project auth "https://framer.com/projects/GutachtenHelden--uDdG1ZwZKuhNmduicUsQ"
 ```
 
-oder beim Anlegen/Duplizieren eines Projekts jeweils **"via browser approval"** — der offizielle CLI-Text selbst benennt das explizit. Das offizielle README bestätigt zusätzlich: *"This will connect to your Framer project and ask you to grant access to the project from your browser."*
+Ausgabe:
 
-Das bedeutet konkret:
+```
+Could not open browser. Open this URL manually:
+https://framer.com/projects/server-api/auth?callback=http%3A%2F%2F127.0.0.1%3A34273%2Fcallback&state=...&projectId=uDdG1ZwZKuhNmduicUsQ
+```
 
-1. Es gibt noch keine Projekt-URL für "KFZ-GutachtenHelden" in diesem System — die öffentliche Live-Domain (`https://www.kfz-gutachtenhelden.de`) ist **nicht** dasselbe wie der Framer-Editor-Projektlink, den nur ein eingeloggter Mitbearbeiter erhält.
-2. Selbst mit einer Projekt-URL löst die Autorisierung einen **Browser-Freigabeschritt** aus, den nur Ramins eigenes Framer-Konto bestätigen kann.
-3. Es gibt keinen sicheren, korrekten Weg, diesen Schritt zu erraten, zu simulieren oder zu umgehen — genau das schließt die Aufgabenstellung ausdrücklich aus ("keine Zugangsdaten erfinden", "nicht versuchen, Authentifizierung zu umgehen").
+Ramin öffnete diesen Link, klickte „Verbinden", erhielt danach: *„Die Website ist nicht erreichbar — 127.0.0.1 hat die Verbindung abgelehnt. ERR_CONNECTION_REFUSED"*.
 
-**Deshalb wurde hier bewusst pausiert, statt einen Fake-Verbindungsversuch oder erfundene Inventurdaten zu erzeugen.**
+### Ursache (verifiziert, kein Rateversuch)
 
-### Was Ramin jetzt konkret tun muss
+Der Autorisierungs-Callback ist auf `http://127.0.0.1:<port>/callback` fest verdrahtet — das ist die **lokale Adresse des Claude-Code-Containers, in dem dieser Auftrag läuft**, nicht Ramins eigener Rechner. Sein Browser kann diese Adresse strukturell nicht erreichen, unabhängig von Firewall/Proxy-Einstellungen bei ihm.
 
-1. Das Framer-Projekt **KFZ-GutachtenHelden** öffnen (Browser unter framer.com oder die Framer-Desktop-App).
-2. Den Projektlink kopieren:
-   - **Browser:** Adresszeile kopieren, während das Projekt geöffnet ist.
-   - **App:** Rechtsklick auf den Projekt-Tab → „Copy Project Link".
-3. Diesen Link in einer Nachricht an Claude einfügen (er enthält keine Zugangsdaten, nur eine Projekt-ID).
-4. Sobald Claude `project auth <Link>` ausführt, öffnet sich ein Browser-Freigabedialog — **Ramin muss diesen selbst in seinem eigenen, eingeloggten Framer-Konto bestätigen.** Claude zeigt an dieser Stelle nur die Aufforderung an, kann den Klick nicht für Ramin ausführen.
-5. Falls beim Verbindungsversuch mehrere Projekte zur Auswahl erscheinen: Claude pausiert erneut und nennt die gefundenen Projektnamen zur Auswahl.
+Das offizielle npm-README (`@framer/agent`) bestätigt diese Architekturannahme explizit: *"Framer Agent works with any **local** agent harness..."* — das Produkt ist für Agenten konzipiert, die auf demselben Gerät wie der Browser laufen (klassisches lokales Claude-Code-Setup), nicht für einen isolierten Cloud-Container wie diese Arbeitsumgebung.
 
-### Falls das nicht funktioniert (mögliche Alternativursachen, laut offizieller FAQ)
+Kontrolle nach dem gescheiterten Versuch: `project list` weiterhin `[]` — es wurde nichts autorisiert oder in einem Zwischenzustand gespeichert.
 
-- Framer-Branching (Voraussetzung für sichere, isolierte Agentenarbeit) ist laut FAQ ein reguläres Framer-Feature ("Framer has branching, so every change made by an external agent automatically happens on a branch") — keine Hinweise auf einen kostenpflichtigen Plan-Unterschied gefunden, aber das wurde nicht am echten Projekt verifiziert, da keine Verbindung bestand. Falls Ramins Plan Branching nicht anbietet, wird das erst beim echten Verbindungsversuch sichtbar — Claude bricht in diesem Fall sofort ab und berichtet, ohne einen Workaround zu versuchen.
+**Kein Workaround versucht:** kein Port-Forwarding, kein Tunnel, keine Manipulation der Callback-URL — das wäre eine Umgehung der Autorisierung gewesen, die die Aufgabenstellung ausdrücklich untersagt.
+
+### Geprüfte, aber nicht dokumentierte Alternative
+
+Die CLI kennt den Aufruf `project auth <projectUrlOrId> [apiKey]` mit optionalem API-Key-Parameter — ein möglicher Weg ohne lokalen Browser-Callback. Ein Versuch, die offizielle Erklärungsseite (`framer.com/agents/external`) dazu abzurufen, scheiterte an einer Zugriffssperre dieser Arbeitsumgebung (HTTP 403). Das npm-README dokumentiert diesen Parameter nicht weiter. **Es wurde deshalb keine Vermutung angestellt, wo/wie ein solcher Key zu erzeugen wäre** — das müsste Ramin direkt bei Framer (Account-/Projekteinstellungen oder Framer-Support) klären.
+
+### Sichere Alternativen (keine davon automatisch ausgeführt)
+
+1. **Claude Code lokal auf Ramins eigenem Rechner** ausführen (dort, wo auch der Browser läuft) — damit funktioniert der Callback exakt wie vom Hersteller vorgesehen. Das ist der offiziell beschriebene, unterstützte Weg.
+2. **Bei Framer direkt nachfragen**, ob ein API-Key-basierter Autorisierungsweg für Remote-/Cloud-Coding-Agenten existiert, und falls ja, wo er erzeugt wird.
+
+### Status der offenen Punkte aus der ursprünglichen Anleitung
+
+- Framer-Branching-Unterstützung konnte **nicht verifiziert** werden (Verbindung kam nicht zustande) — weiterhin offen.
+- Kein Hinweis auf ein kostenpflichtiges Upgrade gefunden, aber ebenfalls nicht verifizierbar ohne Verbindung.
 
 ## 4.–11. (Inventur, Testbranch, Praxistest, Motion, Responsive, SEO, Vergleich)
 
@@ -120,4 +125,4 @@ Das bedeutet konkret:
 
 ## Nächster Schritt
 
-Warten auf Ramins Projektlink und Browser-Freigabe. Danach: Phase 3 fortsetzen (Verbindung herstellen), anschließend Phasen 4–11 wie im Auftrag beschrieben durchführen — als Fortsetzung dieses Piloten, nicht als neuer Auftrag.
+Wartet auf Ramins Entscheidung, wie mit dem Umgebungs-Blocker umgegangen wird (lokale Ausführung vs. Klärung eines API-Key-Wegs mit Framer). Sobald eine Verbindung zustande kommt — gleich auf welchem Weg —, wird dieser Pilot mit dem vereinbarten Read-only-Test (Projektname, Zugriff, Seiten, Komponenten, CMS, Branch-Unterstützung) fortgesetzt, danach erst der sichere Testbranch und die restlichen Phasen — nicht als neuer Auftrag.
