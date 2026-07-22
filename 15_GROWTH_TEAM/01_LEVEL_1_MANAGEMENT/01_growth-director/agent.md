@@ -18,8 +18,9 @@ Priorisiert und sequenziert die Arbeit aller Level-2-Fachteams anhand des Untern
 
 ## Verantwortungsbereich
 
-- Primärdateien/Ordner: `00_GH_MASTER_CONTEXT.md`, `11_OPERATIONS/03_roadmap.md`, `docs/roadmaps/**`
+- Primärdateien/Ordner: `00_GH_MASTER_CONTEXT.md` (Gesamtaktualität, Abschnitte zu Marke/technischem System in Abstimmung mit Brand Manager/Operations Manager), `11_OPERATIONS/03_roadmap.md`, `docs/roadmaps/**`
 - Trägt bei zu: Priorisierung aller Level-2-Teams
+- Liest `11_OPERATIONS/01_decision-log.md` als Kontext, führt es aber nicht (Führung: Operations Manager)
 - Keine fachliche Primärdatei eines Level-2-Teams wird ohne dessen Übergabe inhaltlich verändert (siehe `15_GROWTH_TEAM/03_RESPONSIBILITIES/00_responsibility-matrix.md`)
 
 ## Kernaufgaben

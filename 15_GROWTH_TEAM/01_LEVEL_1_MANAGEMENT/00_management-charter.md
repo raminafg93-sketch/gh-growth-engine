@@ -1,6 +1,6 @@
 # Level 1 — Management-Charta
 
-**Status:** Architektur — Inhalte noch nicht ausgefüllt
+**Status:** Growth Director, Brand Manager und Operations Manager ausgearbeitet und gegeneinander geprüft (Stand 2026-07-22)
 
 ## Zweck dieser Ebene
 
@@ -18,7 +18,26 @@ Level 1 arbeitet nicht selbst operativ in einzelnen Fachkanälen (das ist Aufgab
 
 ## Entscheidungsbefugnis gegenüber Level 2
 
-[noch nicht ausgefüllt]
+Jede Level-1-Rolle darf innerhalb ihres eigenen Verantwortungsbereichs (siehe Verantwortlichkeits-Matrix) einem Level-2-Team eine Aufgabe zuweisen oder ein Ergebnis zur Überarbeitung zurückgeben:
+
+- **Growth Director** entscheidet **ob und wann** ein Team arbeitet (Priorisierung/Reihenfolge).
+- **Brand Manager** entscheidet, **ob ein Ergebnis wegen Marken-/Claim-/Rechtsabweichung zurückgewiesen wird**, unabhängig von der Priorität.
+- **Operations Manager** entscheidet, **ob eine Übergabe formal vollständig ist**, unabhängig von Priorität und Markenkonsistenz.
+
+Keine Level-1-Rolle entscheidet über die fachliche Umsetzung selbst (welches Keyword, welcher Anzeigentext, welcher Code) — das bleibt beim jeweiligen Level-2-Team. Bei widersprüchlichen Anweisungen zweier Level-1-Rollen an dasselbe Team gilt: zuerst untereinander klären (siehe Abschnitt „Abgrenzung der drei Rollen zueinander" unten), erst danach an das Team weitergeben. Ein Team erhält nie zwei widersprüchliche Freigaben gleichzeitig.
+
+## Abgrenzung der drei Rollen zueinander (Cross-Check vom 2026-07-22)
+
+Nach Fertigstellung aller drei Level-1-Rollen wurden sie gegeneinander geprüft. Gefundene Überschneidung und Korrektur:
+
+- **Befund:** Der ursprüngliche Architektur-Entwurf ordnete Operations Manager pauschal `11_OPERATIONS/**` zu — das hätte sich mit der bereits dem Growth Director zugeordneten `11_OPERATIONS/03_roadmap.md` und der inhaltlich zum Brand Manager gehörenden `11_OPERATIONS/02_proof-register.md` überschnitten.
+- **Korrektur:** `11_OPERATIONS/` wurde nach Inhalt statt nach Ordner aufgeteilt:
+  - `03_roadmap.md` (Priorisierungsinhalt) → Growth Director
+  - `02_proof-register.md` (Claims/Nachweise) → Brand Manager
+  - `01_decision-log.md` (strukturelle Entscheidungen/Prozess) → Operations Manager
+- **Weitere Klärung:** `00_GH_MASTER_CONTEXT.md` gehört keiner Rolle exklusiv — der Growth Director hält die Gesamtdatei aktuell, Abschnitte zu Marke/Unternehmen bzw. technischem System werden in Abstimmung mit Brand Manager bzw. Operations Manager geändert, nicht einseitig.
+- **Kein zusätzlicher Overhead:** Es wurde keine neue Datei und keine neue Rolle für diese Klärung angelegt — die Korrektur wurde direkt in den drei betroffenen Rollen-Dateien und der Verantwortlichkeits-Matrix nachgezogen.
+- Damit sind alle drei Rollen überschneidungsfrei: Growth Director = **was/wann**, Brand Manager = **was darf gesagt werden**, Operations Manager = **wie sauber wird gearbeitet**.
 
 ## Bezug zu den Autonomiestufen
 
