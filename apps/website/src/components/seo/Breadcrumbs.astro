@@ -25,7 +25,13 @@ const jsonLd = {
     "@type": "ListItem",
     position: index + 1,
     name: item.label,
-    item: `${site.websiteUrl}${item.href}`,
+    // item.href ist meist ein relativer Pfad dieser Seite; einzelne Krumen
+    // (z. B. "Leistungen") zeigen bewusst auf die externe Live-Website
+    // (siehe ServiceOverview.astro, "kein toter interner Link") und liefern
+    // bereits eine vollständige URL — dann nicht zusätzlich site.websiteUrl voranstellen.
+    item: item.href.startsWith("http")
+      ? item.href
+      : `${site.websiteUrl}${item.href}`,
   })),
 };
 ---
