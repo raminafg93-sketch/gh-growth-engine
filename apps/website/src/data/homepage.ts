@@ -141,25 +141,73 @@ export const homepage = {
   },
 
   damageExamples: {
+    title: "Typische Fälle aus der Gutachterpraxis",
     intro:
-      "Typische Situationen nach einem Unfall — als anschauliche Beispiele, keine realen Einzelfälle.",
+      "Alle Beispiele sind anonymisiert und beschreiben typische Schadensbilder aus der täglichen Praxis. Es handelt sich nicht um reale Kundenakten.",
     items: [
       {
-        title: "Wertminderung wird oft komplett übersehen",
-        description:
-          "Auch nach einer fachgerecht reparierten Karosserie bleibt der Wiederverkaufswert eines Unfallwagens häufig dauerhaft gemindert. Ohne unabhängiges Gutachten wird dieser Anspruch in der Praxis oft gar nicht erst geltend gemacht.",
+        title: "Kleiner Auffahrunfall mit großer Wirkung",
+        initialImpression: "Nur der Stoßfänger scheint beschädigt.",
+        findings: [
+          "Verformung des Pralldämpfers",
+          "Beschädigung der Hecktraverse",
+          "Defekte Parksensoren",
+          "Lackierarbeiten an mehreren Bauteilen",
+        ],
+        result:
+          "Die tatsächliche Schadenhöhe lag deutlich über dem ersten Eindruck. Ohne unabhängiges Gutachten wären mehrere Positionen vermutlich unberücksichtigt geblieben.",
       },
       {
-        title: "Nutzungsausfall wird selten vollständig eingerechnet",
-        description:
-          "Steht Dein Fahrzeug nach dem Unfall in der Werkstatt, hast Du für diese Zeit in der Regel Anspruch auf eine Entschädigung. Ein reiner Kostenvoranschlag erfasst diesen Anspruch meist nicht — er muss separat fachlich beziffert werden.",
+        title: "Parkschaden an der Fahrzeugseite",
+        initialImpression: "Kleine Delle in der Fahrertür.",
+        findings: [
+          "Beschädigung von Tür und Kotflügel",
+          "notwendige Lackangleichung",
+          "Wertminderung des Fahrzeugs",
+          "Nutzungsausfall während der Reparatur",
+        ],
+        result:
+          "Neben den Reparaturkosten konnten weitere berechtigte Schadenpositionen berücksichtigt werden.",
       },
       {
-        title: "Der erste Blick unterschätzt den Schaden fast immer",
-        description:
-          "Sichtbare Blechschäden sind oft nur ein Teil der Wahrheit — verdeckte technische Folgeschäden zeigen sich erst bei genauer Untersuchung. Wer sich allein auf den optischen Eindruck verlässt, unterschätzt den tatsächlichen Schaden häufig deutlich.",
+        title: "Seitlicher Zusammenstoß",
+        initialImpression: "Kratzer und beschädigte Felge.",
+        findings: [
+          "Achsvermessung erforderlich",
+          "beschädigte Radaufhängung",
+          "versteckte Karosserieschäden",
+        ],
+        result:
+          "Erst die technische Begutachtung machte den vollständigen Schaden sichtbar.",
       },
-    ] as { title: string; description: string; amount?: string }[],
+      {
+        title: "Elektrofahrzeug nach Unfall",
+        initialImpression: "Leichter Seitenschaden.",
+        findings: [
+          "Prüfung des Hochvoltsystems erforderlich",
+          "zusätzliche sicherheitsrelevante Kontrollen",
+          "verdeckte Schäden hinter der Verkleidung",
+        ],
+        result:
+          "Gerade bei Elektrofahrzeugen sind Schäden oft nicht vollständig von außen erkennbar.",
+      },
+      {
+        title: "Heckschaden nach Ampelunfall",
+        initialImpression: "Fahrzeug weiterhin fahrbereit.",
+        findings: [
+          "beschädigte Heckstruktur",
+          "Verzug tragender Bauteile",
+          "zusätzliche Reparaturmaßnahmen",
+        ],
+        result:
+          "Ein vermeintlich kleiner Schaden entwickelte sich zu einem deutlich umfangreicheren Reparaturfall.",
+      },
+    ] as {
+      title: string;
+      initialImpression: string;
+      findings: string[];
+      result: string;
+    }[],
   },
 
   reviews: {
