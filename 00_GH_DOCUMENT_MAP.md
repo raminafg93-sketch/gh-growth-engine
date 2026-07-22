@@ -57,6 +57,9 @@ Jede Information hat genau eine Primärdatei. Andere Dateien dürfen darauf verw
 | Homepage-Alt-Neu-Vergleich | `docs/migration/homepage-parity-and-improvement-report.md` | Homepage-Bestandsinventar, Optimierungs-Matrix |
 | Claude-Monorepo-Workflow | `docs/workflows/claude-code-monorepo-workflow.md` | CLAUDE.md, GitHub-Autonomieregeln |
 | Owner-Workflow | `docs/workflows/owner-workflow.md` | CLAUDE.md, GitHub-Autonomieregeln |
+| Growth-Team-Struktur (Rollen, Ebenen, Übersicht) | `15_GROWTH_TEAM/00_growth-team-overview.md` | CLAUDE.md, 12_AI_SYSTEM, Master Context Abschnitt 11 |
+| Growth-Team-Verantwortlichkeiten | `15_GROWTH_TEAM/03_RESPONSIBILITIES/00_responsibility-matrix.md` | GitHub-Autonomieregeln, Growth-Team-Übersicht |
+| Growth-Team-Übergabeprozess | `15_GROWTH_TEAM/04_HANDOFFS/00_handoff-principles.md` | GH Change Request Template, GitHub-Autonomieregeln |
 
 ## Pflichtantwort jeder KI bei Änderungen
 
