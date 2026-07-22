@@ -1,6 +1,6 @@
 # Verantwortlichkeits-Matrix
 
-**Status:** Architektur — Zuordnung zu bestehenden Primärdateien/Ordnern; inhaltliche Mandate noch nicht ausgefüllt
+**Status:** Level 1 und Level 2 vollständig ausgearbeitet und cross-geprüft (Stand 2026-07-22)
 **Primärdatei für:** welches Team/welche Rolle für welchen Bereich des Repositories primär zuständig ist
 
 Grundregel wie in `00_GH_DOCUMENT_MAP.md`: Diese Matrix ordnet Zuständigkeit zu, sie verschiebt keine fachlichen Primärdateien. Bei Widerspruch gilt weiterhin die fachliche Primärdatei.
@@ -26,7 +26,9 @@ Grundregel wie in `00_GH_DOCUMENT_MAP.md`: Diese Matrix ordnet Zuständigkeit zu
 | Google Ads Team | `06_GOOGLE/03_google-ads.md` | Conversion Team | GELB/ROT (Budgets = ROT) | Growth Director |
 | Social Media Team | `07_META/**` | Content Team | GRÜN/GELB | Brand Manager |
 | Framer/Web Team | `apps/website/**`, `docs/architecture/**`, `docs/framer/**` | SEO Team, Conversion Team | GELB (produktiver Website-Code) | Operations Manager |
-| QA Team | `13_REPORTS/**`, `.claude/skills/website-inventory/` | alle Teams (Prüfung vor Freigabe/Merge) | GRÜN | Operations Manager |
+| QA Team | `13_REPORTS/**`, `.claude/skills/website-inventory/` | alle Teams (Prüfung vor Freigabe/Merge) | GRÜN | Growth Director (Ergebnis), fachlich eng abgestimmt mit Operations Manager |
+
+**Hinweis zum Level-2-Cross-Check** (2026-07-22, sequenziell durchgeführt, siehe `15_GROWTH_TEAM/02_LEVEL_2_TEAMS/00_teams-charter.md` für den vollständigen Ablauf): Alle 8 Teams wurden nacheinander erstellt und jeweils sofort gegen die bereits bestehenden Rollen geprüft. Verfeinerung gegenüber dem ursprünglichen Architektur-Entwurf: QA Team berichtet Ergebnisse an den Growth Director (nicht an den Operations Manager) und stimmt sich nur fachlich mit dem Operations Manager ab — Ergebnis- vs. Prozessprüfung sind unterschiedliche Dinge. Keine weitere Korrektur nötig; alle übrigen Zuordnungen aus der Architekturphase (PR #20) haben sich bestätigt.
 
 ## Hinweis zur Autonomiestufen-Spalte
 
