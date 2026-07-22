@@ -1,6 +1,6 @@
 # Level 2 — Fachteams-Charta
 
-**Status:** Architektur — Inhalte noch nicht ausgefüllt
+**Status:** Alle 8 Fachteams ausgearbeitet und sequenziell gegeneinander geprüft (Stand 2026-07-22)
 
 ## Zweck dieser Ebene
 
@@ -28,6 +28,21 @@ Kein Fachteam arbeitet isoliert. Wo ein Team das Ergebnis eines anderen Teams br
 ## Bezug zu den Autonomiestufen
 
 Jedes Fachteam handelt innerhalb der in `12_AI_SYSTEM/03_github-autonomy.md` festgelegten Stufen GRÜN/GELB/ROT. Die typische Autonomiestufe je Team ist in der Verantwortlichkeits-Matrix vermerkt — das ist eine Einordnungshilfe, keine Abweichung von der Primärdatei `12_AI_SYSTEM/03_github-autonomy.md`.
+
+## Cross-Check der 8 Fachteams (sequenziell, 2026-07-22)
+
+Wie beauftragt wurde nach jedem fertiggestellten Team geprüft, bevor das nächste Team erstellt wurde. Ergebnis:
+
+1. **SEO Team** — keine Vorgänger, keine Überschneidung.
+2. **Local SEO Team** — Prüfung gegen SEO Team: Gefahr, dass beide „lokale" On-Page-Inhalte beanspruchen. Abgegrenzt: SEO Team = On-Page-Inhalte mit Lokalbezug (z. B. `-hamburg`-Landingpages), Local SEO Team = Google Business Profile/Maps außerhalb der Website. Zusätzlich geklärt: Local SEO Team trägt nie selbst etwas live in das externe GBP-Dashboard ein (wie beim Framer/Web Team gegenüber der Live-Framer-Website).
+3. **Content Team** — Prüfung gegen SEO Team/Local SEO Team: Content Team schreibt nur auf Basis eines Briefs, entscheidet nicht selbst über Keyword/Struktur. Prüfung gegen Brand Manager (Level 1): Content Team erstellt Entwürfe, finale Tonalitäts-/Claim-Freigabe bleibt beim Brand Manager — keine Überschneidung, nur eine klare Übergabe.
+4. **Conversion Team** — Prüfung gegen SEO Team: beide arbeiten auf derselben Seite. Abgegrenzt: SEO Team liefert such­intentionsgerechte Struktur, Conversion Team ergänzt CTA-/Trust-/Einwand-Elemente darauf, ohne die Struktur zu brechen — sequenzielle Zusammenarbeit statt Überschneidung.
+5. **Google Ads Team** — Prüfung gegen SEO Team: Keyword-Überschneidung zwischen organischer und bezahlter Suche möglich. Abgegrenzt: Teams stimmen Ziel-Keywords ab, damit organische und bezahlte Suche sich ergänzen statt intern zu konkurrieren. Bestätigt: Budget-/Kampagnenaktivierung bleibt ROT (`12_AI_SYSTEM/03_github-autonomy.md`) — keine Überschneidung mit Growth Director, der nur die Sequenzierung der Ads-Phase entscheidet, nicht das Budget selbst.
+6. **Social Media Team** — Prüfung gegen Content Team: Risiko doppelter Content-Erstellung. Abgegrenzt: Social Media Team adaptiert/repurposed Content-Team-Material, erfindet keine neuen Grundnarrative. Offener Punkt dokumentiert (kein Overhead, nur Klarstellung): Für bezahlte Meta-Ads existiert aktuell **kein eigenes Fachteam** unter den beauftragten 8 Teams — das Social Media Team verantwortet ausschließlich organische Inhalte; Meta-Ads-Budgets bleiben ROT bei Ramin, eine mögliche künftige Erweiterung wäre eine separate Entscheidung.
+7. **Framer/Web Team** — Prüfung gegen Conversion Team/SEO Team: beide liefern Anforderungen an dieses Team, keine Überschneidung, da Framer/Web Team nur umsetzt, nicht selbst priorisiert oder Inhalte definiert. Prüfung gegen Operations Manager (Level 1) und Growth Director (Level 1): Framer/Web Team trifft keine Plattformentscheidung (Astro vs. Framer) selbst — das bleibt in `docs/architecture/website-platform-decision.md` verankert.
+8. **QA Team** — Prüfung gegen Operations Manager (Level 1): beide „prüfen", aber unterschiedliche Ebenen — QA Team prüft ein einzelnes fachliches Ergebnis, Operations Manager prüft die Prozess-/Übergabeformalie des Gesamtsystems. Explizit in beiden Rollen-Dateien gegenseitig referenziert, keine Überschneidung.
+
+**Ergebnis:** Keine der 8 Fachteam-Definitionen übernimmt eine Level-1-Aufgabe (Priorisierung, finale Marken-/Claim-Freigabe, Änderung von Autonomiestufen/Prozessformaten). Keine zusätzliche Datei oder Rolle wurde für die Klärungen angelegt — alle Korrekturen erfolgten direkt in den betroffenen Team-Dateien.
 
 ## Verwandte Dateien
 
