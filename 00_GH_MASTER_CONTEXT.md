@@ -251,7 +251,7 @@ Enthält:
 - Entscheidungen
 - Claude-Regeln
 - Skills
-- Agenten
+- Agenten (Struktur siehe `15_GROWTH_TEAM/00_growth-team-overview.md`)
 - Reports
 - später Website-Code
 
