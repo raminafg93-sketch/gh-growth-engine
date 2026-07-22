@@ -1,7 +1,7 @@
 # Design System v1 — `apps/website`
 
 Stand: 2026-07-21
-Primärdatei für die technische Umsetzung des Markenauftritts im Astro-Code. Fachliche Primärquelle bleibt `01_BRAND/03_design-system.md` — bei Widerspruch gilt diese Wissensdatei, dieses Dokument beschreibt nur die technische Übersetzung in CSS-Tokens und Komponenten.
+Primärdatei für die technische Umsetzung des Markenauftritts im Astro-Code. Fachliche Primärquelle bleibt `01_BRAND/03_design-system.md` — bei Widerspruch gilt diese Wissensdatei, dieses Dokument beschreibt nur die technische Übersetzung in CSS-Tokens und Komponenten. Für die Anwendung des Markendesigns auf anderen Kanälen (Social Media, Google Ads, Google Business Profile, Print) siehe `01_BRAND/05_design-system-channels.md` — beide Dokumente leiten sich aus derselben Primärquelle ab und dürfen sich nicht widersprechen.
 
 ## Designprinzipien
 

@@ -15,6 +15,8 @@ Jede Information hat genau eine Primärdatei. Andere Dateien dürfen darauf verw
 | Rechtliche Abgrenzung GH / Anwalt | `02_COMPANY/03_legal-boundaries.md` | Claims, Website-Rechtstexte, Google Ads |
 | Claims | `01_BRAND/04_claims.md` | Master Context, Website, Google Ads, Meta |
 | Farben / Schriften / Design | `01_BRAND/03_design-system.md` | Website-Komponenten, Social Templates, PDFs |
+| Kanal-Anwendung des Design-Systems (Social/Ads/GBP/Print) | `01_BRAND/05_design-system-channels.md` | `01_BRAND/03_design-system.md`, `docs/architecture/design-system.md` |
+| Growth-Engine-Masterplan (Phasen 2–9) | `docs/roadmaps/growth-engine-masterplan.md` | 15_GROWTH_TEAM, bisherige Einzel-Roadmaps |
 | Tonalität | `01_BRAND/02_tone-of-voice.md` | alle Content-Dateien |
 | Leistungen | `03_OFFER/01_services.md` | Website, Google Business, Ads, SEO |
 | Kundenprozess | `03_OFFER/02_customer-process.md` | Website, Onboarding-Content, Conversion-System |
