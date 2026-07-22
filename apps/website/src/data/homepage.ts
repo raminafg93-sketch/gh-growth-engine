@@ -142,8 +142,24 @@ export const homepage = {
 
   damageExamples: {
     intro:
-      "Konkrete, anonymisierte Schadenbeispiele folgen, sobald sie freigegeben sind.",
-    items: [] as { title: string; description: string; amount?: string }[],
+      "Typische Situationen nach einem Unfall — als anschauliche Beispiele, keine realen Einzelfälle.",
+    items: [
+      {
+        title: "Wertminderung wird oft komplett übersehen",
+        description:
+          "Auch nach einer fachgerecht reparierten Karosserie bleibt der Wiederverkaufswert eines Unfallwagens häufig dauerhaft gemindert. Ohne unabhängiges Gutachten wird dieser Anspruch in der Praxis oft gar nicht erst geltend gemacht.",
+      },
+      {
+        title: "Nutzungsausfall wird selten vollständig eingerechnet",
+        description:
+          "Steht Dein Fahrzeug nach dem Unfall in der Werkstatt, hast Du für diese Zeit in der Regel Anspruch auf eine Entschädigung. Ein reiner Kostenvoranschlag erfasst diesen Anspruch meist nicht — er muss separat fachlich beziffert werden.",
+      },
+      {
+        title: "Der erste Blick unterschätzt den Schaden fast immer",
+        description:
+          "Sichtbare Blechschäden sind oft nur ein Teil der Wahrheit — verdeckte technische Folgeschäden zeigen sich erst bei genauer Untersuchung. Wer sich allein auf den optischen Eindruck verlässt, unterschätzt den tatsächlichen Schaden häufig deutlich.",
+      },
+    ] as { title: string; description: string; amount?: string }[],
   },
 
   reviews: {

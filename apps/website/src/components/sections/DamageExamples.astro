@@ -1,22 +1,23 @@
 ---
 /**
- * Konkrete Schadenbeispiele. Rendert bewusst NICHTS, solange
- * `homepage.damageExamples.items` leer ist — es gibt aktuell keine echten,
- * freigegebenen Einzelfallbeispiele in der Wissensbasis (siehe
- * docs/migration/current-homepage-inventory.md, Sektion "Schadenbeispiele").
- * Kundendaten dürfen ohnehin nicht in diesem Repository gespeichert werden.
+ * Schadenbeispiele. Rendert nichts, solange `homepage.damageExamples.items`
+ * leer ist. Die Einträge sind bewusst allgemeine, illustrative Beispiele
+ * (keine realen Einzelfälle/Schadenakten) — echte Kundendaten dürfen
+ * ohnehin nicht in diesem Repository gespeichert werden (siehe CLAUDE.md,
+ * Abschnitt "Sicherheit").
  */
 import Section from "@/components/layout/Section.astro";
 import Card from "@/components/ui/Card.astro";
 import { homepage } from "@/data/homepage";
 
-const { items } = homepage.damageExamples;
+const { items, intro } = homepage.damageExamples;
 ---
 
 {
   items.length > 0 && (
     <Section id="schadenbeispiele" background="surface">
       <h2>Schadenbeispiele</h2>
+      <p class="lede">{intro}</p>
       <div class="damage-grid">
         {items.map((item) => (
           <Card>
