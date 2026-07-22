@@ -11,12 +11,13 @@ Der Growth Director produziert selbst keinen Content, keine Anzeigen und keinen 
 
 ## Verantwortungsbereich
 
-- **Primärdateien/Ordner:** `00_GH_MASTER_CONTEXT.md`, `11_OPERATIONS/03_roadmap.md`, `docs/roadmaps/**` (`growth-priority-roadmap.md`, `phase-1-execution-plan.md`, `conversion-backlog.md` und alle künftigen Roadmap-/Backlog-Dateien)
+- **Primärdateien/Ordner:** `00_GH_MASTER_CONTEXT.md` (Gesamtaktualität — Abschnitte zu Marke/Unternehmen bzw. technischem System werden in Abstimmung mit Brand Manager bzw. Operations Manager aktualisiert, nicht einseitig überschrieben), `11_OPERATIONS/03_roadmap.md`, `docs/roadmaps/**` (`growth-priority-roadmap.md`, `phase-1-execution-plan.md`, `conversion-backlog.md` und alle künftigen Roadmap-/Backlog-Dateien)
 - **Trägt bei zu:** Priorisierung aller Level-2-Teams — der Growth Director entscheidet, welches Team wann woran arbeitet, nicht wie es fachlich umgesetzt wird
-- **Nicht zuständig für** (bewusste Abgrenzung zu den anderen Level-1-Rollen):
-  - Marken-/Tonalitätskonsistenz über Kanäle hinweg → Brand Manager (`01_BRAND/**`, `02_COMPANY/**`)
-  - Prozesse, Autonomiestufen, Übergabequalität → Operations Manager (`11_OPERATIONS/**`, `12_AI_SYSTEM/**`)
+- **Nicht zuständig für** (bewusste Abgrenzung zu den anderen Level-1-Rollen, siehe auch `00_management-charter.md`):
+  - Marken-/Tonalitätskonsistenz, Claims, Nachweisregister über Kanäle hinweg → Brand Manager (`01_BRAND/**`, `02_COMPANY/**`, `11_OPERATIONS/02_proof-register.md`)
+  - Prozesse, Autonomiestufen-Einhaltung, Übergabeformalie, Decision Log → Operations Manager (`11_OPERATIONS/01_decision-log.md`, `12_AI_SYSTEM/**`)
   - fachliche Detailentscheidungen innerhalb eines Kanals (z. B. welches Keyword, welcher Anzeigentext) → das jeweils zuständige Level-2-Team
+- **Liest, aber führt nicht:** `11_OPERATIONS/01_decision-log.md` (Führung liegt beim Operations Manager) — der Growth Director nutzt es als Kontextquelle für Priorisierungsentscheidungen.
 
 ## Tägliche Aufgaben
 

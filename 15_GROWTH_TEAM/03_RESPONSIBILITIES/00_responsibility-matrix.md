@@ -9,9 +9,11 @@ Grundregel wie in `00_GH_DOCUMENT_MAP.md`: Diese Matrix ordnet Zuständigkeit zu
 
 | Rolle | Primär verantwortlich für | Trägt bei zu | Autonomiestufe (Regelfall) | Berichtet an |
 |---|---|---|---|---|
-| Growth Director | `00_GH_MASTER_CONTEXT.md`, `11_OPERATIONS/03_roadmap.md`, `docs/roadmaps/**` | Priorisierung aller Level-2-Teams | GRÜN/GELB je nach Thema | Ramin |
-| Brand Manager | `01_BRAND/**`, `02_COMPANY/**` | Content Team, Social Media Team, SEO Team | GRÜN/GELB je nach Thema | Ramin |
-| Operations Manager | `11_OPERATIONS/**`, `12_AI_SYSTEM/**` | alle Teams (Prozesse, Übergaben) | GRÜN | Ramin |
+| Growth Director | `00_GH_MASTER_CONTEXT.md` (Gesamtaktualität), `11_OPERATIONS/03_roadmap.md`, `docs/roadmaps/**` | Priorisierung aller Level-2-Teams | GRÜN/GELB je nach Thema | Ramin |
+| Brand Manager | `01_BRAND/**`, `02_COMPANY/**`, `11_OPERATIONS/02_proof-register.md` | Content Team, Social Media Team, SEO Team, Conversion Team, Google Ads Team, Framer/Web Team | GRÜN/GELB je nach Thema | Ramin |
+| Operations Manager | `11_OPERATIONS/01_decision-log.md`, `12_AI_SYSTEM/**`, Pflege von `00_GH_DOCUMENT_MAP.md` | alle Teams (Prozesse, Übergaben), besonders QA Team | GRÜN | Ramin |
+
+**Hinweis zur Abgrenzung innerhalb von `11_OPERATIONS/`** (Ergebnis des Level-1-Cross-Checks vom 2026-07-22): `11_OPERATIONS/` ist kein einheitlich einer Rolle zugeordneter Ordner, sondern nach Inhalt aufgeteilt — `03_roadmap.md` (Priorisierung) gehört dem Growth Director, `02_proof-register.md` (Claims/Nachweise) dem Brand Manager, `01_decision-log.md` (strukturelle Entscheidungen/Prozess) dem Operations Manager. Details und Begründung: `15_GROWTH_TEAM/01_LEVEL_1_MANAGEMENT/00_management-charter.md`.
 
 ## Level 2 — Fachteams
 
