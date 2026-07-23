@@ -1,28 +1,37 @@
 ---
 /**
- * Konkrete Schadenbeispiele. Rendert bewusst NICHTS, solange
- * `homepage.damageExamples.items` leer ist — es gibt aktuell keine echten,
- * freigegebenen Einzelfallbeispiele in der Wissensbasis (siehe
- * docs/migration/current-homepage-inventory.md, Sektion "Schadenbeispiele").
- * Kundendaten dürfen ohnehin nicht in diesem Repository gespeichert werden.
+ * Schadenbeispiele. Rendert nichts, solange `homepage.damageExamples.items`
+ * leer ist. Die Einträge sind bewusst allgemeine, illustrative Beispiele
+ * (keine realen Einzelfälle/Schadenakten) — echte Kundendaten dürfen
+ * ohnehin nicht in diesem Repository gespeichert werden (siehe CLAUDE.md,
+ * Abschnitt "Sicherheit").
  */
 import Section from "@/components/layout/Section.astro";
 import Card from "@/components/ui/Card.astro";
 import { homepage } from "@/data/homepage";
 
-const { items } = homepage.damageExamples;
+const { title, items, intro } = homepage.damageExamples;
 ---
 
 {
   items.length > 0 && (
     <Section id="schadenbeispiele" background="surface">
-      <h2>Schadenbeispiele</h2>
+      <h2>{title}</h2>
+      <p class="lede">{intro}</p>
       <div class="damage-grid">
         {items.map((item) => (
           <Card>
             <h3>{item.title}</h3>
-            <p>{item.description}</p>
-            {item.amount && <p class="damage-grid__amount">{item.amount}</p>}
+            <p class="damage-grid__label">Erster Eindruck</p>
+            <p>{item.initialImpression}</p>
+            <p class="damage-grid__label">Das Gutachten zeigte</p>
+            <ul>
+              {item.findings.map((finding) => (
+                <li>{finding}</li>
+              ))}
+            </ul>
+            <p class="damage-grid__label">Ergebnis</p>
+            <p>{item.result}</p>
           </Card>
         ))}
       </div>
@@ -37,8 +46,13 @@ const { items } = homepage.damageExamples;
     margin-top: var(--space-8);
   }
 
-  .damage-grid__amount {
+  .damage-grid__label {
     font-weight: var(--font-weight-semibold);
     color: var(--color-text-brand);
+    margin: var(--space-4) 0 var(--space-1);
+  }
+
+  .damage-grid__label:first-of-type {
+    margin-top: 0;
   }
 </style>
