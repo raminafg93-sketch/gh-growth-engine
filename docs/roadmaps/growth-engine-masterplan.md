@@ -35,7 +35,9 @@ Growth-Team-Struktur (`15_GROWTH_TEAM/`): Level 1 (Growth Director, Brand Manage
 
 **Abschlusskriterium:** Jedes Team bezieht seine fachliche Grundlage aus einer einzigen konsolidierten Quelle.
 
-**Status:** Geplant.
+**Fundament bereits vorhanden:** Seit 2026-07-23 dokumentiert `17_GROWTH_KNOWLEDGE_BASE/` ein Themen-Register (Suchintention ↔ Einwand ↔ URL), eine Struktur für Versicherungswissen, ein FAQ-Register und dauerhafte interne Verlinkungsregeln. **Klare Abgrenzung:** Bestehende Primärquellen (`04_AUDIENCE/**`, `05_WEBSITE_SEO/**`, `03_OFFER/**`, `13_REPORTS/**`) wurden bewusst nicht bereinigt oder verschoben — die neue Struktur referenziert sie und dokumentiert Überschneidungen, statt sie aufzulösen. Eine vollständige Konsolidierung („einzige Quelle" laut Abschlusskriterium) bleibt damit noch offen und ist als Empfehlung in den jeweiligen Dateien vermerkt.
+
+**Status:** Geplant. Wissensfundament (`17_GROWTH_KNOWLEDGE_BASE/`) vorbereitet.
 
 ## Phase 4 — Conversion System v2
 
@@ -114,3 +116,4 @@ Growth-Team-Struktur (`15_GROWTH_TEAM/`): Level 1 (Growth Director, Brand Manage
 - `docs/roadmaps/growth-priority-roadmap.md`, `phase-1-execution-plan.md`, `conversion-backlog.md` (frühere, kleinteiligere Roadmaps — bleiben gültig, dieser Masterplan ordnet sie in den größeren Phasenrahmen ein)
 - `01_BRAND/05_design-system-channels.md` (Phase 2)
 - `16_CONTENT_PRODUCTION_SYSTEM/` (Architektur-Fundament für Phase 9)
+- `17_GROWTH_KNOWLEDGE_BASE/` (Wissensfundament für Phase 3)
