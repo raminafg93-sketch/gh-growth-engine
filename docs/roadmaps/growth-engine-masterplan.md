@@ -99,7 +99,9 @@ Growth-Team-Struktur (`15_GROWTH_TEAM/`): Level 1 (Growth Director, Brand Manage
 
 **Abschlusskriterium:** Die identifizierten Kernwiederholungen laufen ohne manuellen Eingriff je Einzelfall.
 
-**Status:** Geplant.
+**Fundament bereits vorhanden:** Seit 2026-07-23 dokumentiert `16_CONTENT_PRODUCTION_SYSTEM/` die werkzeugunabhängige Architektur- und Schnittstellen-Grundlage für ein künftiges, kanalübergreifendes Content-Production-System (Input-Struktur, Asset-Zustandsmodell, Agenten-Schnittstellen-Prinzip, Pipeline-Stufenmodell, Freigabe-Grundsatz). **Klare Abgrenzung:** Dieses Fundament ist reine Architektur/Dokumentation — keine Automation-Implementierung, keine APIs, keine Tools, keine Automatisierungsplattform, kein tatsächliches Publizieren. Die technische Umsetzung selbst (Werkzeuge, konkrete Agenten-Konfigurationen, Integrationen, tatsächliche Ausführung) bleibt vollständig Teil dieser Phase 9 und beginnt erst, wenn diese Phase explizit beauftragt wird.
+
+**Status:** Geplant. Architektur-Fundament (`16_CONTENT_PRODUCTION_SYSTEM/`) vorbereitet.
 
 ## Bewusst ausgeklammert
 
@@ -111,3 +113,4 @@ Growth-Team-Struktur (`15_GROWTH_TEAM/`): Level 1 (Growth Director, Brand Manage
 - `15_GROWTH_TEAM/00_growth-team-overview.md`
 - `docs/roadmaps/growth-priority-roadmap.md`, `phase-1-execution-plan.md`, `conversion-backlog.md` (frühere, kleinteiligere Roadmaps — bleiben gültig, dieser Masterplan ordnet sie in den größeren Phasenrahmen ein)
 - `01_BRAND/05_design-system-channels.md` (Phase 2)
+- `16_CONTENT_PRODUCTION_SYSTEM/` (Architektur-Fundament für Phase 9)
