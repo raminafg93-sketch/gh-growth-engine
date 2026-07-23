@@ -38,6 +38,7 @@ Dieser Ordner schließt diese Lücken, **ohne** bestehende Primärquellen zu dup
 | `02_INSURANCE_KNOWLEDGE/01_insurance-knowledge.md` | Struktur für konsolidiertes Versicherungswissen — Inhalte großteils noch offen, bewusst nicht erfunden |
 | `03_FAQ_LIBRARY/01_faq-library.md` | zentrales FAQ-Register, referenziert bestehende Code-FAQ statt sie zu duplizieren |
 | `04_INTERNAL_LINKING/01_internal-linking-rules.md` | dauerhafte Verlinkungsregeln, referenziert aus `13_REPORTS/06_information-architecture.md` |
+| `05_SCHEMA/01_knowledge-object-schema.md` | einheitliches Datenmodell, nach dem jedes künftige Knowledge Object in diesem Ordner strukturiert wird |
 
 ## Verwandte Dateien
 
