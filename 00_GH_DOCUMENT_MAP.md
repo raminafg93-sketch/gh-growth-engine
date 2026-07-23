@@ -62,6 +62,11 @@ Jede Information hat genau eine Primärdatei. Andere Dateien dürfen darauf verw
 | Growth-Team-Struktur (Rollen, Ebenen, Übersicht) | `15_GROWTH_TEAM/00_growth-team-overview.md` | CLAUDE.md, 12_AI_SYSTEM, Master Context Abschnitt 11 |
 | Growth-Team-Verantwortlichkeiten | `15_GROWTH_TEAM/03_RESPONSIBILITIES/00_responsibility-matrix.md` | GitHub-Autonomieregeln, Growth-Team-Übersicht |
 | Growth-Team-Übergabeprozess | `15_GROWTH_TEAM/04_HANDOFFS/00_handoff-principles.md` | GH Change Request Template, GitHub-Autonomieregeln |
+| Content-Production-System — Architektur/Übersicht | `16_CONTENT_PRODUCTION_SYSTEM/00_content-production-system-overview.md` | 09_CONTENT_ENGINE, 15_GROWTH_TEAM, Masterplan Phase 9 |
+| Content-Production-System — Input-Struktur | `16_CONTENT_PRODUCTION_SYSTEM/01_INPUT/01_input-specification.md` | Google-Drive-Struktur, Design System |
+| Content-Production-System — Agenten-Schnittstellen | `16_CONTENT_PRODUCTION_SYSTEM/03_AGENTS/01_agent-interface-principles.md` | 15_GROWTH_TEAM, GitHub-Autonomieregeln |
+| Content-Production-System — Pipeline-Stufen und Freigabe-Grundsatz | `16_CONTENT_PRODUCTION_SYSTEM/04_WORKFLOWS/01_pipeline-stages.md`, `02_approval-principle.md` | GitHub-Autonomieregeln, Handoff-Prinzipien |
+| Asset-Zustandsmodell | `14_ASSETS/REFERENCES/google-drive-structure.md` | Content-Production-System |
 
 ## Pflichtantwort jeder KI bei Änderungen
 
