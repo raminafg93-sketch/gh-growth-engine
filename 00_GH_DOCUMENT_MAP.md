@@ -67,6 +67,11 @@ Jede Information hat genau eine Primärdatei. Andere Dateien dürfen darauf verw
 | Content-Production-System — Agenten-Schnittstellen | `16_CONTENT_PRODUCTION_SYSTEM/03_AGENTS/01_agent-interface-principles.md` | 15_GROWTH_TEAM, GitHub-Autonomieregeln |
 | Content-Production-System — Pipeline-Stufen und Freigabe-Grundsatz | `16_CONTENT_PRODUCTION_SYSTEM/04_WORKFLOWS/01_pipeline-stages.md`, `02_approval-principle.md` | GitHub-Autonomieregeln, Handoff-Prinzipien |
 | Asset-Zustandsmodell | `14_ASSETS/REFERENCES/google-drive-structure.md` | Content-Production-System |
+| Growth-Knowledge-Base — Architektur/Übersicht | `17_GROWTH_KNOWLEDGE_BASE/00_growth-knowledge-base-overview.md` | 04_AUDIENCE, 05_WEBSITE_SEO, 03_OFFER, 09_CONTENT_ENGINE, Masterplan Phase 3 |
+| Themen-Register (Suchintention ↔ Einwand ↔ URL) | `17_GROWTH_KNOWLEDGE_BASE/01_THEMEN_REGISTER/01_topic-register.md` | 04_AUDIENCE/02–03, 05_WEBSITE_SEO/02_url-map.md, 13_REPORTS/06 |
+| Versicherungswissen (Struktur) | `17_GROWTH_KNOWLEDGE_BASE/02_INSURANCE_KNOWLEDGE/01_insurance-knowledge.md` | 02_COMPANY/03_legal-boundaries.md |
+| FAQ-Bibliothek (Register) | `17_GROWTH_KNOWLEDGE_BASE/03_FAQ_LIBRARY/01_faq-library.md` | apps/website/src/data/homepage.ts, 04_AUDIENCE/02 |
+| Interne Verlinkungsregeln (dauerhaft) | `17_GROWTH_KNOWLEDGE_BASE/04_INTERNAL_LINKING/01_internal-linking-rules.md` | 13_REPORTS/06_information-architecture.md |
 
 ## Pflichtantwort jeder KI bei Änderungen
 
