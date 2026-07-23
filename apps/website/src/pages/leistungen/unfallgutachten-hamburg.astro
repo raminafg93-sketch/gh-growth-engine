@@ -1,0 +1,312 @@
+---
+/**
+ * Landingpage "Unfallgutachten Hamburg" — Phase-1-Maßnahme aus
+ * docs/roadmaps/growth-priority-roadmap.md / phase-1-execution-plan.md.
+ * Content-Basis: PR #16 (docs-only Draft), überarbeitet, erweitert (FAQ
+ * 6 → 17 Fragen) und um Conversion-Verbesserungen aus dem Conversion-
+ * Backlog (PR #17/#18) ergänzt: CTA nach Einwandbehandlung und nach FAQ,
+ * Microcopy zur Erreichbarkeit neben den CTA-Gruppen.
+ *
+ * Verwendet ausschließlich bestehende Komponenten (keine neue Komponente
+ * angelegt). Noch keine Live-Seite: noindex, bis Domain/Deployment
+ * feststehen (astro.config.mjs setzt bewusst kein `site`, siehe
+ * SeoHead.astro) und bis die Plattformentscheidung
+ * (docs/architecture/website-platform-decision.md) final geklärt ist.
+ */
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Section from "@/components/layout/Section.astro";
+import Badge from "@/components/ui/Badge.astro";
+import Card from "@/components/ui/Card.astro";
+import QualificationBadge from "@/components/trust/QualificationBadge.astro";
+import StatItem from "@/components/trust/StatItem.astro";
+import PrimaryCtaGroup from "@/components/conversion/PrimaryCtaGroup.astro";
+import FaqSection from "@/components/sections/FaqSection.astro";
+import Breadcrumbs from "@/components/seo/Breadcrumbs.astro";
+import { site } from "@/data/site";
+import { unfallgutachtenHamburg as page } from "@/data/pages/unfallgutachten-hamburg";
+
+const breadcrumbItems = [
+  { label: "Start", href: "/" },
+  { label: "Leistungen", href: `${site.websiteUrl}/leistungen` },
+  { label: "Unfallgutachten Hamburg", href: "/leistungen/unfallgutachten-hamburg" },
+];
+
+const availabilityMicrocopy = `${site.hours}${site.service247 ? " · 24/7-Service" : ""} erreichbar`;
+---
+
+<BaseLayout title={page.seo.title} description={page.seo.description} noindex={true}>
+  <Section id="breadcrumb" background="page" class="breadcrumb-section">
+    <Breadcrumbs items={breadcrumbItems} />
+  </Section>
+
+  <Section id="hero" background="page" class="hero">
+    <Badge tone="accent">{page.hero.eyebrow}</Badge>
+    <h1>{page.hero.headline}</h1>
+    <p class="lede">{page.hero.subheadline}</p>
+    {page.hero.supportingPoints.map((point) => <p>{point}</p>)}
+
+    <PrimaryCtaGroup size="lg" class="hero__cta" />
+    <p class="microcopy">{availabilityMicrocopy}</p>
+
+    <div class="cluster hero__qualifications">
+      {site.qualifications.slice(1, 4).map((q) => <QualificationBadge>{q}</QualificationBadge>)}
+    </div>
+
+    <nav class="quick-nav" aria-label="Abschnitte auf dieser Seite">
+      <ul>
+        {page.quickNav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </Section>
+
+  <Section id="kennzahlen" background="surface" ariaLabel="Kennzahlen">
+    <div class="trust-bar">
+      {page.trustBar.stats.map((stat) => <StatItem value={stat.value} label={stat.label} />)}
+    </div>
+  </Section>
+
+  <Section id="warum" background="page">
+    <h2>{page.intro.heading}</h2>
+    {page.intro.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+  </Section>
+
+  <Section id="ablauf" background="surface">
+    <h2>{page.process.heading}</h2>
+    <p class="lede">{page.process.intro}</p>
+    <ol class="process-list">
+      {page.process.steps.map((step, index) => (
+        <li class="process-list__item">
+          <span class="process-list__index" aria-hidden="true">{index + 1}</span>
+          <div>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Section id="leistungsumfang" background="page">
+    <h2>{page.scope.heading}</h2>
+    <div class="scope-grid">
+      {page.scope.items.map((item) => (
+        <Card>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </Card>
+      ))}
+    </div>
+  </Section>
+
+  <Section id="darum-gh" background="surface">
+    <h2>{page.trustSection.heading}</h2>
+    <p class="lede">{page.trustSection.intro}</p>
+    <div class="cluster">
+      {site.qualifications.map((q) => <QualificationBadge>{q}</QualificationBadge>)}
+    </div>
+  </Section>
+
+  <Section id="rechte" background="page">
+    <h2>{page.objections.heading}</h2>
+    <p class="lede">{page.objections.intro}</p>
+    <div class="objections-grid">
+      {page.objections.items.map((item) => (
+        <Card>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </Card>
+      ))}
+    </div>
+    <p class="text-sm">Individuelle Rechtsberatung erfolgt durch einen Rechtsanwalt.</p>
+    <PrimaryCtaGroup size="md" class="rechte__cta" />
+    <p class="microcopy">{availabilityMicrocopy}</p>
+  </Section>
+
+  <FaqSection
+    id="faq"
+    heading={page.faq.heading}
+    intro={page.faq.intro}
+    items={page.faq.items}
+  />
+
+  <Section id="faq-cta" background="page" class="faq-cta">
+    <p class="lede">Noch Fragen zu Deinem Fall? Wir klären das direkt.</p>
+    <PrimaryCtaGroup size="md" class="faq-cta__group" />
+    <p class="microcopy">{availabilityMicrocopy}</p>
+  </Section>
+
+  <Section background="inverse" class="final-cta">
+    <h2>{page.finalCta.headline}</h2>
+    <p class="lede">{page.finalCta.body}</p>
+    <PrimaryCtaGroup size="lg" class="final-cta__cta" />
+  </Section>
+</BaseLayout>
+
+<style>
+  .breadcrumb-section {
+    padding-block: var(--space-4);
+  }
+
+  :global(.hero .container) {
+    max-width: var(--container-md);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  :global(.hero) h1 {
+    margin: 0;
+  }
+
+  :global(.hero .hero__cta) {
+    justify-content: center;
+    margin-top: var(--space-4);
+  }
+
+  .hero__qualifications {
+    justify-content: center;
+    margin-top: var(--space-2);
+  }
+
+  .microcopy {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin: var(--space-2) 0 0;
+  }
+
+  :global(.final-cta) .microcopy {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .quick-nav {
+    margin-top: var(--space-6);
+  }
+
+  .quick-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    padding: 0;
+    margin: 0;
+    font-size: var(--text-sm);
+  }
+
+  .trust-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .trust-bar {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .process-list {
+    list-style: none;
+    margin: var(--space-8) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .process-list__item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .process-list__index {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-full);
+    background: var(--color-accent);
+    color: var(--color-text-inverse);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .process-list__item h3 {
+    font-size: var(--text-lg);
+    margin: 0 0 var(--space-1);
+  }
+
+  .process-list__item p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .process-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .scope-grid,
+  .objections-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-block: var(--space-8) var(--space-6);
+  }
+
+  .scope-grid h3,
+  .objections-grid h3 {
+    font-size: var(--text-lg);
+    margin: 0 0 var(--space-2);
+  }
+
+  .scope-grid p,
+  .objections-grid p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 768px) {
+    .scope-grid,
+    .objections-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  :global(.rechte__cta) {
+    justify-content: flex-start;
+    margin-top: var(--space-6);
+  }
+
+  .faq-cta {
+    text-align: center;
+  }
+
+  :global(.faq-cta__group) {
+    justify-content: center;
+    margin-top: var(--space-3);
+  }
+
+  :global(.final-cta .container) {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  :global(.final-cta) .lede {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  :global(.final-cta .final-cta__cta) {
+    justify-content: center;
+  }
+</style>

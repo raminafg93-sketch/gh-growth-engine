@@ -1,19 +1,57 @@
 ---
 /**
  * FAQ als natives <details>/<summary> — vollständig zugänglich und
- * bedienbar ohne jegliches JavaScript.
+ * bedienbar ohne jegliches JavaScript. Ohne Props identisch zum
+ * bisherigen Verhalten (Homepage-FAQ aus homepage.ts). Mit Props
+ * wiederverwendbar für Unterseiten mit eigener FAQ (z. B.
+ * /leistungen/unfallgutachten-hamburg) — inklusive passendem
+ * FAQPage-Schema für genau die auf der jeweiligen Seite sichtbaren
+ * Fragen (ein FAQPage-Schema pro Seite, keine sitebreite Dopplung).
  */
 import Section from "@/components/layout/Section.astro";
 import { homepage } from "@/data/homepage";
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  heading?: string;
+  intro?: string;
+  items?: readonly FaqItem[];
+  /** eindeutige Section-ID, falls mehrere FAQ-Sektionen im selben Dokument denkbar wären */
+  id?: string;
+}
+
+const {
+  heading = "Häufige Fragen",
+  intro = homepage.faq.intro,
+  items = homepage.faq.items,
+  id = "faq",
+} = Astro.props;
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
 ---
 
-<Section id="faq" background="page" narrow>
-  <h2>Häufige Fragen</h2>
-  <p class="lede">{homepage.faq.intro}</p>
+<Section id={id} background="page" narrow>
+  <h2>{heading}</h2>
+  <p class="lede">{intro}</p>
 
   <div class="faq-list">
     {
-      homepage.faq.items.map((item) => (
+      items.map((item) => (
         <details class="faq-item">
           <summary>{item.question}</summary>
           <p>{item.answer}</p>
@@ -21,6 +59,8 @@ import { homepage } from "@/data/homepage";
       ))
     }
   </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} is:inline />
 </Section>
 
 <style>
