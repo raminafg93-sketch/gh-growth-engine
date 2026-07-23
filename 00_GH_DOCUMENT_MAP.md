@@ -72,6 +72,7 @@ Jede Information hat genau eine Primärdatei. Andere Dateien dürfen darauf verw
 | Versicherungswissen (Struktur) | `17_GROWTH_KNOWLEDGE_BASE/02_INSURANCE_KNOWLEDGE/01_insurance-knowledge.md` | 02_COMPANY/03_legal-boundaries.md |
 | FAQ-Bibliothek (Register) | `17_GROWTH_KNOWLEDGE_BASE/03_FAQ_LIBRARY/01_faq-library.md` | apps/website/src/data/homepage.ts, 04_AUDIENCE/02 |
 | Interne Verlinkungsregeln (dauerhaft) | `17_GROWTH_KNOWLEDGE_BASE/04_INTERNAL_LINKING/01_internal-linking-rules.md` | 13_REPORTS/06_information-architecture.md |
+| Knowledge-Object-Schema (Datenmodell) | `17_GROWTH_KNOWLEDGE_BASE/05_SCHEMA/01_knowledge-object-schema.md` | 04_AUDIENCE, 01_BRAND, 02_COMPANY, 11_OPERATIONS, 12_AI_SYSTEM, 16_CONTENT_PRODUCTION_SYSTEM |
 
 ## Pflichtantwort jeder KI bei Änderungen
 
